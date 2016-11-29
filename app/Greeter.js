@@ -8,15 +8,28 @@
 
 //Greeter,js
 import React, {Component} from 'react'
-import config from './config.json';
-import styles from './Greeter.css';
-// //导入模拟数据
-// import data from './Mock/index.js'
-// console.log(data);
-
-//使用ajax模拟数据
-import Mock   from 'mockjs'
 import reqwest from 'Reqwest'
+// // //导入模拟ajax数据
+// import  './Mock/index.js'
+//import config from './config.json';
+import styles from './Greeter.css';
+//使用模拟ajax数据
+import Mock   from 'mockjs'
+Mock.mock('http://g1.cn', {
+    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+    'list|10': [{
+        'id|+1': 1,
+        "number|100-200": 100,
+        "string|1-5": "★",
+        "array|1": [
+            "北京",
+            "上海",
+            "深圳",
+            "广州"
+        ],
+        "date":'@datetime("yyyy-MM-dd HH:mm:ss")'
+    }]
+})
 
 class Greeter extends Component{
 
@@ -33,28 +46,12 @@ class Greeter extends Component{
   componentDidMount(){
 
     let that = this;
-
-    Mock.mock('http://g1.cn', {
-        // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-        'list|10': [{
-            // 属性 id 是一个自增数，起始值为 1，每次增 1
-            'id|+1': 1,
-            "number|100-200": 100,
-            "string|1-5": "★",
-            "array|1": [
-                "北京",
-                "上海",
-                "广州"
-            ],
-            "date":'@datetime("yyyy-MM-dd HH:mm:ss")'
-        }]
-    })
-
     reqwest({
         url: 'http://g1.cn',
         method: 'post',
         type: 'json',
     }).then(function (data) {
+      debugger
       that.setState({
          list: data.list
       })
@@ -79,7 +76,14 @@ class Greeter extends Component{
 
     return (
       <div className={styles.root} >
-        {config.greetText}
+        {/*config.greetText*/}
+        <p className = {styles.tr} style = {{marginBottom:10}}>
+        <span className = {styles.td}>{"id"}</span>
+        <span className = {styles.td}>{"number"}</span>
+        <span className = {styles.td}>{"string"}</span>
+        <span className = {styles.td}>{"array"}</span>
+        <span className = {styles.td}>{"date"}</span>
+       </p> 
         {nodeList}
       </div>
     );
