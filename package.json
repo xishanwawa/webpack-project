@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --display-error-details --display-modules --config",
+    "start": "webpack-dev-server --progress --colors --display-error-details --display-modules --config ./webpack.config.js",
     "build": "set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^6.5.3",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
     "babel-plugin-react-transform": "^2.0.2",
@@ -20,7 +19,8 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
-    "postcss-loader": "^1.1.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
     "react-transform-hmr": "^1.0.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",

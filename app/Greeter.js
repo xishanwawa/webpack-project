@@ -9,7 +9,7 @@
 //Greeter,js
 import React, {Component} from 'react'
 import config from './config.json';
-import styles from './Greeter.css';//导入
+import styles from './Greeter.less';//导入
 
 class Greeter extends Component{
   render() {
