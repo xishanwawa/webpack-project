@@ -2,8 +2,14 @@
 // document.getElementById("root").appendChild(greeter());
 
 import React from 'react';
-import {render} from 'react-dom';
-import Greeter from './Greeter';
-import './main.less';
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import App from 'containers'
+import { store } from 'store'
 
-render(<Greeter />, document.getElementById('root'));
+ReactDOM.render(
+	<Provider store={store}>
+        <App />
+    </Provider>, 
+	document.getElementById('root')
+);
