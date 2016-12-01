@@ -23,19 +23,19 @@ module.exports = {
 				loader: "babel"
 			},
 			//填充style 样式
-			{
-                test: /\.(less)$/,
-                exclude: /node_modules/,
-	            loaders: ['style', 'css', 'less'],
-	        },
+			// {
+   //              test: /\.(less)$/,
+   //              exclude: /node_modules/,
+	  //           loaders: ['style', 'css', 'less'],
+	  //       },
             //生成独立的css文件
-		    // {
-	        //   test: /\.(less)$/,
-	        //   loader: extractCSS.extract(['css', 'less'])
-	        // }, 
+		    {
+	          test: /\.(less)$/,
+	          loader: extractCSS.extract(['css', 'less'])
+	        }, 
 		]
 	},
-	externals: {'react': 'React', 'react-dom': 'ReactDOM'},
+	//externals: {'react': 'React', 'react-dom': 'ReactDOM'},
 	devtool: 'source-map',
 	plugins: [
         new webpack.BannerPlugin("Copyright yangtianming Unicorns inc."), //在这个数组中new一个就可以了
