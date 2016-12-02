@@ -1,0 +1,463 @@
+
+
+@borderStyleColor: 1px solid #d9dede;
+@textTitColor: #444;
+@todayBgColor: #FFFDF3;
+@weekday: #e6e6e6;
+@fcPast: #BCBCBC;
+@calendarLiWidth: 97px;
+@eventWidth: 97px;
+
+.FullCalender {
+	width: 680px;
+	margin-bottom:20px;
+}
+.CalendarHeader {
+	margin-bottom: 10px;
+}
+.fc-left {
+	float: left;
+}
+.fc-button-group {
+	display: inline-block;
+	.ant-btn-group{
+		.ant-btn-primary{
+			background-color: #919191;
+			border-color:  #919191;
+		}
+		.ant-btn-ghost:hover{
+			color: #fff;
+	        background-color: #919191;
+			border-color:  #919191;
+		}
+		.ant-btn-primary:last-child:not(:first-child){
+	       border-left-color: #919191;
+		}
+		.ant-btn-primary:last-child:not(:first-child){
+	       border-left-color: #919191;
+		}
+		.ant-btn-primary:first-child:not(:last-child){
+	       border-right-color: #919191;
+		}
+		.ant-btn-primary:not(:first-child):not(:last-child){
+	        border-right-color: #919191;
+	        border-left-color: #919191;
+		}
+		.ant-btn-primary + .ant-btn{
+	        border-left-color: #919191;
+		}
+	}
+}
+.fc-center {
+	margin: auto;
+	text-align: center;
+	display: inline-block;
+    width: 362px;
+	font-size: 16px
+}
+.fc-right {
+	float: right;
+    margin-top:1px;
+	.MonthWeekDay{
+		float: left;
+		.ant-btn-group{
+			margin-right: 10px;
+		}
+		.ant-btn-primary{
+			background-color: #919191;
+			border-color:  #919191;
+		}
+		.ant-btn-ghost:hover{
+			color: #fff;
+            background-color: #919191;
+			border-color:  #919191;
+		}
+		.ant-btn-primary:last-child:not(:first-child){
+           border-left-color: #919191;
+		}
+		.ant-btn-primary:first-child:not(:last-child){
+           border-right-color: #919191;
+		}
+		.ant-btn-primary:not(:first-child):not(:last-child){
+            border-right-color: #919191;
+            border-left-color: #919191;
+		}
+		.ant-btn-primary + .ant-btn{
+            border-left-color: #919191;
+		}
+	}
+}
+.fc-clear {clear: both;}
+
+.CalendarBody {
+	overflow: hidden;
+	overflow-x: auto;
+	.weekday{
+		background-color: #fff;
+		span {
+			display: inline-block;
+			width: @calendarLiWidth; 
+			line-height: 30px;
+			text-align: center;
+			color: @textTitColor;
+			border-right: none; 
+			border-bottom: none;
+		}
+	}
+	.fc-days-content {
+		ul{
+			overflow: hidden;
+			border-right: @borderStyleColor;
+			border-bottom: @borderStyleColor; 
+			li {
+				float: left;
+				width: @calendarLiWidth;
+				height: 100px;
+				padding: 2px 8px;
+				border: @borderStyleColor;
+				font-size: 14px;
+				border-right: none;
+				border-bottom: none;
+				color: @textTitColor;
+				overflow:hidden;
+				.fc-moreEvents {
+					display: inline-block;
+					width: 100%;
+					padding: 0 8px;
+					font-size: 12px;
+					cursor: pointer;
+				}
+				&:hover {
+				    background-color: #FFFDF3;
+			    }
+			}
+			.fc-today {background-color: @todayBgColor;}
+	        .fc-past {color: @fcPast;}
+		}
+
+	}
+	.fc-today {background-color: @todayBgColor;}
+}
+
+.fc-week-content {
+    border-right: @borderStyleColor;
+    overflow: hidden;
+	.nodeWeekCon {
+		float:left;
+		width: @calendarLiWidth; 
+		height: 630px;
+		padding: 4px 2px 0;
+		border: @borderStyleColor;
+		border-right: none;
+		overflow: auto;
+		&:hover {
+		    background-color: #F7F7F7;
+	    }
+	}
+}
+
+.fc-day-content {
+    position: relative;
+    height: 630px;
+}
+
+.EventTit {
+	position: relative;
+	display: block;
+	width: 82px;
+	height: 23px;
+	line-height: 23px;
+    margin:2px auto;
+    padding:0 8px;
+    color: #fff;
+    background-color:#1EB7BC;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.fc-unselectable {
+	-webkit-user-select: none;
+	 -khtml-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.MoreEvents {
+	position: absolute;
+	left:0;
+	top:0;
+	width: 230px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+	z-index: 3;
+}
+.hideShow {
+	display: none;
+}
+.MoreEventTit {
+	height: 24px;
+	color: #fff;
+	background-color: #1EB7BC;
+	.hideMoreEvents {
+		float: right;
+		width: 20px;
+		margin:0 2px;
+		text-align: center;
+		line-height: 24px;
+		cursor: pointer;
+	}
+	.hideMoreEventsDate{
+		display: inline-block;
+		line-height: 24px;
+		font-weight: bold;
+		padding-left: 10px;
+	}
+}
+
+.MoreEventBody{
+	width: 100%;
+	height: 152px;
+	padding: 10px 20px;
+	overflow: hidden;
+	overflow-y: auto;
+	margin: 8px 0;
+	.EventTit {
+		width: 100%;
+	}
+}
+.HandleEvents {
+	left:0;
+	top:0;
+	width: 300px;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 2px;
+	z-index: 3;
+}
+.HandleEventTit {
+	height: 30px;
+	line-height: 30px;
+	border-bottom: @borderStyleColor;
+	background-color: #1eb7bc;
+	color: #fff;
+	padding:0 0 0 10px;
+	.hideHandleEvents {
+		float: right;
+		width: 20px;
+		margin: 0 3px;
+		text-align: center;
+		line-height: 30px;
+		cursor: pointer;
+	}
+	.EventsName{
+		display: inline-block;
+		width: 260px;
+		vertical-align: middle;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		line-height: 20px;
+		font-weight: bold;
+	}
+}
+.HandleEventBody {
+	width: 100%;
+	min-height: 100px;
+	padding:10px;
+	overflow: hidden;
+	overflow-y: auto;
+	p {
+		line-height: 24px; 
+	}
+	.label {
+		color: #999;
+		display: inline-block;
+		width: 60px;
+	}
+}
+.timesTit {
+	span {
+		display:inline-block;
+		width: 50px;
+		height: 30px;
+		line-height: 30px;
+		background-color: #fff;
+		text-align: center;
+		border: @borderStyleColor;
+		color: @textTitColor;
+		border-width: 0 1px 1px 0;
+	}
+}
+
+.timesCon{
+	overflow: hidden;
+	width: 1200px;
+    position: absolute;
+    z-index: 1;
+	.TimeCon {
+        float: left;
+        width: 50px;
+        height: 630px;
+        border: @borderStyleColor;
+		border-width: 0 1px 1px 0;
+		&:hover {
+		   background-color: #F7F7F7;
+	    }
+    }
+}
+
+.CalendarBodycon {width:1200px;}
+.HandleEventFoot {
+	padding:0 10px 10px;
+	a {
+		margin-right:6px;
+	}
+}
+.timesConFloat{
+	position: absolute;
+	top:30px;
+	left: 0;
+	width: 1216px;
+    height: 630px;
+    padding: 30px 0;
+    overflow: hidden;
+    overflow-y: auto;
+	.EventTit {
+		width: 43px;
+	}
+}
+
+.dayBody {
+	border:@borderStyleColor; 
+	border-width: 1px 1px 0 1px;
+}
+
+.dayEventCon { 
+	position: relative; 
+	width:50px; 
+	z-index: 2;
+}
+
+.timeLine {
+	position: absolute; 
+	bottom: 0; 
+	display: block; 
+	height: 20px; 
+	width: 100%; 
+	left: 50%; 
+	border-bottom: 2px solid #1EB7BC;
+}
+
+
+
+
+
+
+
+//头部列表样式
+body {
+	background-color: #F7F9FA;
+}
+.tasksTypeTit {
+	border-bottom:5px solid #F7F8FA;
+	padding: 10px 5px; 
+	background-color: #fff;
+	span {
+		display: inline-block;
+		margin: 0 8px;
+        padding: 0 2px;
+		color: #666; 
+		font-size: 16px;
+		cursor: pointer;
+	}
+	.active {
+		color: #1EB7BC; 
+		border-bottom: 2px solid #1EB7BC;
+	}
+}
+
+.loadingBox {
+	left: 0;
+	top:0;
+	padding-top: 100px;
+	text-align: center;
+	line-height: 100%;
+	position: fixed;
+	z-index: 100001;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+//日历布局样式
+.CalenderListBox {
+	margin-bottom: -20px;
+	overflow: hidden;
+	background-color: #EBF4F6;
+}
+.minCalender {
+	float: left;
+	width: 196px;
+	padding:20px 10px;
+}
+.CalenderAndList {
+	float: left;
+	width: 704px;
+	padding:20px 10px;
+	background-color: #ffffff;
+}
+.showTypeCon {
+	padding-bottom: 10px;
+	button:nth-child(1) {
+		margin-right: 16px;
+	}
+}
+/*
+未开始：task_not_start，已取消：task_canceled 已完成：task_finished 进行中：task_doing 已延期：task_delay；
+ */
+.ck_task {
+    border-radius: 4px;
+}
+.ck_schedule {
+	border-radius: 12px;
+}
+
+span.task_not_start {
+    background-color: #6691CC;
+}
+
+span.task_canceled {
+    background-color: #E67E96;
+}
+span.task_finished {
+    background-color: #F0A000;
+}
+span.task_doing {
+    background-color: #8BBF43;
+}
+span.task_delay {
+	background-color: #E2CE28;
+}
+
+label.task_not_start {
+    border-bottom: 2px solid #6691CC;
+}
+
+label.task_canceled {
+    border-bottom: 2px solid #E67E96;
+}
+label.task_finished {
+    border-bottom: 2px solid #F0A000;
+}
+label.task_doing {
+	  border-bottom: 2px solid #8BBF43;
+}
+label.task_delay {
+	border-bottom: 2px solid #E2CE28;
+}

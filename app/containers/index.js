@@ -4,7 +4,11 @@
  */
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Counter from "components"
+
+import Counter        from "components"
+import CkDatePicker   from "components/CkDatePicker"
+import CkFullCalendar from "components/CkFullCalendar"
+
 import {onIncrement, onDecrement} from "actions"
 
 class IndexPage extends Component {
@@ -22,12 +26,14 @@ class IndexPage extends Component {
 
         return (
         	<div>
-	        	<Counter
-			      value={value}
-			      onIncrement={ this.props.onIncrement.bind(this) }
-			      onDecrement={  this.props.onDecrement.bind(this) }
-			    />
-		    </div>
+              <Counter
+                value={value}
+                onIncrement={ this.props.onIncrement.bind(this) }
+                onDecrement={  this.props.onDecrement.bind(this) }
+              />
+              <CkDatePicker />
+              <CkFullCalendar />
+          </div>
         )
     }
 }
