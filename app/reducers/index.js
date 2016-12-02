@@ -8,7 +8,6 @@ let Obj = {
 let val = 0;
 
 export const reducer = ($$state = Immutable.fromJS(Obj) , action) => {
-	debugger
 	switch (action.type) {
 	    case INCREMENT: 
 	        val = $$state.get("val") + 1;

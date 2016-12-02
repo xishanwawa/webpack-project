@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
+import { Button, Menu, Dropdown, Icon } from 'antd';
 
 export default class Counter extends Component {
     constructor(props) {
@@ -14,8 +15,8 @@ export default class Counter extends Component {
         return (
         	<div>
 	        	<h1>{value}</h1>
-				<button onClick={this.props.onIncrement}>+</button>
-				<button onClick={this.props.onDecrement}>-</button>
+            <Button type="primary"  onClick={this.props.onIncrement}>+</Button>
+            <Button type="primary"  onClick={this.props.onDecrement}>-</Button>
 		    </div>
         )
     }

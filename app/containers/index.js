@@ -17,7 +17,6 @@ class IndexPage extends Component {
     }
 
     render() {
-    	debugger
     	const { $$state } = this.props;
     	let value = $$state.get("val");
 

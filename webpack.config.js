@@ -1,5 +1,6 @@
 //webpack.config.js
 var webpack = require('webpack');
+var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('[name]-[hash].css')
@@ -35,7 +36,17 @@ module.exports = {
 	        }, 
 		]
 	},
-	//externals: {'react': 'React', 'react-dom': 'ReactDOM'},
+	resolve: {
+        extensions: ["", ".js", ".jsx"],
+        alias: {
+            actions: path.join(__dirname, 'app/actions'),
+            components: path.join(__dirname, 'app/components'),
+            containers: path.join(__dirname, 'app/containers'),
+            reducers: path.join(__dirname, 'app/reducers'),
+            store: path.join(__dirname, 'app/store'),
+            routes: path.join(__dirname, 'app/routes'),
+        },
+    },
 	devtool: 'source-map',
 	plugins: [
         new webpack.BannerPlugin("Copyright yangtianming Unicorns inc."), //在这个数组中new一个就可以了
