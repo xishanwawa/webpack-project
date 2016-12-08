@@ -4,11 +4,12 @@ import Immutable from 'immutable'
 
 import { store } from 'store';
 import keyMirror from 'keyMirror';
-
 const actions = keyMirror({
 	INCREMENT: null, 
 	DECREMENT: null
 });
+
+//const actions = keyMirror("111");
 
 const onIncrement = () => {
 	store.dispatch({type: actions.INCREMENT})
@@ -46,3 +47,19 @@ export {
 	onDecrement,
 	indexPageReducer
 }
+
+// "use static";
+// let KeyVal = function(obj) {
+// 	let ret = {};
+// 	let key;
+// 	if((obj instanceof Object && !Array.isArray(obj))) {
+// 		throw new Error('arg must be an object')
+// 	}
+// 	for (key in obj) {
+//        if (obj.hasOwnProperty(key)) {
+// 		   ret[key] = key;
+// 	   }
+// 	};
+
+// 	return ret;
+// }
