@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Router, Route, hashHistory, browserHistory } from 'react-router';
-import IndexPage from 'containers'
+import IndexPage from 'containers/IndexPage'
 
 export default class Routes extends Component {
     constructor(props) {

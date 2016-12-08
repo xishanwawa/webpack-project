@@ -6,10 +6,10 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from 'store'
 import Routes from 'routes'
-
+import 'antd/dist/antd.less'
 ReactDOM.render(
 	<Provider store={store}>
         <Routes />
-    </Provider>, 
+    </Provider>,
 	document.getElementById('root')
 );

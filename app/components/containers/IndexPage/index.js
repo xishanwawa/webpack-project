@@ -5,11 +5,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import Counter        from "components"
-import CkDatePicker   from "components/CkDatePicker"
-import CkFullCalendar from "components/CkFullCalendar"
+import Counter        from "./Counter"
+import CkDatePicker   from "components/common/CkDatePicker"
+import CkFullCalendar from "components/common/CkFullCalendar"
 
-import {onIncrement, onDecrement} from "actions"
+import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
 
 class IndexPage extends Component {
     constructor(props) {
@@ -31,8 +31,6 @@ class IndexPage extends Component {
                 onIncrement={ this.props.onIncrement.bind(this) }
                 onDecrement={  this.props.onDecrement.bind(this) }
               />
-              <CkDatePicker />
-              <CkFullCalendar />
           </div>
         )
     }
@@ -40,7 +38,7 @@ class IndexPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    $$state: state
+    $$state: state.indexPageReducer
   }
 }
 
