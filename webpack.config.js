@@ -33,16 +33,15 @@ module.exports = {
 		    {
 	          test: /\.(less)$/,
 	          loader: extractCSS.extract(['css', 'less'])
-	        }, 
+	        },
 		]
 	},
 	resolve: {
         extensions: ["", ".js", ".jsx"],
         alias: {
-            actions: path.join(__dirname, 'app/actions'),
+            actionsReducers: path.join(__dirname, 'app/actionsReducers'),
             components: path.join(__dirname, 'app/components'),
-            containers: path.join(__dirname, 'app/containers'),
-            reducers: path.join(__dirname, 'app/reducers'),
+            containers: path.join(__dirname, 'app/components/containers'),
             store: path.join(__dirname, 'app/store'),
             routes: path.join(__dirname, 'app/routes'),
         },

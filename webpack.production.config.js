@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.(less)$/,
         loader: extractCSS.extract(['css', 'less'])
-      }, 
+      },
     ]
   },
   plugins: [
