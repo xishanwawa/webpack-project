@@ -44,8 +44,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onIncrement,
-    onDecrement
+    onIncrement: () => dispatch(onIncrement()),
+    onDecrement: () => dispatch(onDecrement())
   }
 }
 

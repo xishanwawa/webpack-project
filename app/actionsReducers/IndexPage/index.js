@@ -12,11 +12,15 @@ const actions = keyMirror({
 //const actions = keyMirror("111");
 
 const onIncrement = () => {
-	store.dispatch({type: actions.INCREMENT})
+	return (dispatch) => {
+	  dispatch({type: actions.INCREMENT})
+	}
 }
 
 const onDecrement = () => {
-	store.dispatch({type: actions.DECREMENT})
+	return (dispatch) => {
+	  dispatch({type: actions.DECREMENT})
+	}
 }
 
 
