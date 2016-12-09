@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from 'store'
 import Routes from 'routes'
+import MockData from 'MockData'
 import 'antd/dist/antd.less'
 ReactDOM.render(
 	<Provider store={store}>

@@ -5,11 +5,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import Counter        from "./Counter"
-import CkDatePicker   from "components/common/CkDatePicker"
-import CkFullCalendar from "components/common/CkFullCalendar"
+import Counter     from "./Counter"
+import ListDemo    from "./ListDemo"
 
 import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
+
 
 class IndexPage extends Component {
     constructor(props) {
@@ -17,7 +17,6 @@ class IndexPage extends Component {
     }
 
     componentDidMount() {
-      //初始获取数据
     }
 
     render() {
@@ -31,6 +30,7 @@ class IndexPage extends Component {
                 onIncrement={ this.props.onIncrement.bind(this) }
                 onDecrement={  this.props.onDecrement.bind(this) }
               />
+              <ListDemo />
           </div>
         )
     }

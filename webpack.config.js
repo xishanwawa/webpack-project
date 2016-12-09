@@ -44,6 +44,7 @@ module.exports = {
             containers: path.join(__dirname, 'app/components/containers'),
             store: path.join(__dirname, 'app/store'),
             routes: path.join(__dirname, 'app/routes'),
+			MockData: path.join(__dirname, 'app/mock'),
         },
     },
 	devtool: 'source-map',
