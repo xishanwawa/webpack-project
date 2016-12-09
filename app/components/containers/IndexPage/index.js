@@ -36,17 +36,28 @@ class IndexPage extends Component {
     }
 }
 
+// function mapStateToProps(state) {
+//   return {
+//     $$state: state.indexPageReducer
+//   }
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     onIncrement: () => dispatch(onIncrement()),
+//     onDecrement: () => dispatch(onDecrement())
+//   }
+// }
+
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+//or
 function mapStateToProps(state) {
   return {
     $$state: state.indexPageReducer
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onIncrement: () => dispatch(onIncrement()),
-    onDecrement: () => dispatch(onDecrement())
-  }
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+module.exports = connect(mapStateToProps, {
+  onIncrement,
+  onDecrement,
+})(IndexPage)

@@ -1,21 +1,23 @@
-
 import Immutable from 'immutable'
-
-
 import { store } from 'store';
 import keyMirror from 'keyMirror';
-const actions = keyMirror({
+
+// const INCREMENT = 'INCREMENT';
+// const DECREMENT = 'DECREMENT';
+
+
+const  actions = keyMirror({
 	INCREMENT: null, 
 	DECREMENT: null
 });
 
-//const actions = keyMirror("111");
 
 const onIncrement = () => {
 	return (dispatch) => {
 	  dispatch({type: actions.INCREMENT})
 	}
 }
+
 
 const onDecrement = () => {
 	return (dispatch) => {
@@ -24,10 +26,7 @@ const onDecrement = () => {
 }
 
 
-let Obj = {
-	val: 0
-};
-const indexPageReducer = ($$state = Immutable.fromJS(Obj) , action) => {
+const indexPageReducer = ($$state = Immutable.fromJS({val: 0}) , action) => {
 	let val = 0;
 	switch (action.type) {
 	    case actions.INCREMENT: 
@@ -52,6 +51,18 @@ export {
 	indexPageReducer
 }
 
+
+
+
+
+
+
+
+
+
+
+
+// keyMirror
 // "use static";
 // let KeyVal = function(obj) {
 // 	let ret = {};
