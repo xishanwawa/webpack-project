@@ -16,6 +16,13 @@ class ListDemo extends Component{
   
   componentDidMount(){
 
+
+    // async function f() {
+    //   return 'hello world';
+    // };
+
+    // f().then(v => console.log(v));
+
     let that = this;
     reqwest({
         url: 'http://g1.cn',
