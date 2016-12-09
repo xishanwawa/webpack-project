@@ -4,7 +4,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('[name]-[hash].css')
-
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 module.exports = {
 	entry: __dirname + "/app/main.js",  //入口文件
 	output: {
@@ -53,7 +53,8 @@ module.exports = {
 	      template: __dirname + "/app/index.tmpl.html",
 	    }),
 	    new webpack.HotModuleReplacementPlugin(),                         //热加载插件
-	    extractCSS                                                        //生成独立文件插件，和module对应
+	    extractCSS,                                                        //生成独立文件插件，和module对应
+		new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
     ],
 	devServer: {
 		headers: {
