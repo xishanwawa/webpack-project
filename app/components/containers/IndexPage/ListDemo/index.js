@@ -47,11 +47,10 @@ class ListDemo extends Component{
 
     return (
       <div className={"root"} >
-        {/*config.greetText*/}
-        <p className = {"tr"} style = {{marginBottom:10}}>
+        <p className = {"tr"} style = {{margin: "10px 0"}}>
         <span className = {'td'}>{"id"}</span>
         <span className = {'td'}>{"number"}</span>
-        <span className = {'td'}>{"string"}</span>
+        <span className = {'td'}>{"star"}</span>
         <span className = {'td'}>{"array"}</span>
         <span className = {'td'}>{"date"}</span>
        </p> 

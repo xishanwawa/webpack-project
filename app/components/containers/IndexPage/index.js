@@ -36,6 +36,7 @@ class IndexPage extends Component {
     }
 }
 
+
 // function mapStateToProps(state) {
 //   return {
 //     $$state: state.indexPageReducer
@@ -50,7 +51,11 @@ class IndexPage extends Component {
 // }
 
 // module.exports = connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+
+
 //or
+
+
 function mapStateToProps(state) {
   return {
     $$state: state.indexPageReducer
