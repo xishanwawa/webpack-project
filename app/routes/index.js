@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 import { Router, Route, hashHistory, browserHistory } from 'react-router';
-import IndexPage from 'containers/IndexPage'
+import IndexPage from 'containers/IndexPage';
 
 export default class Routes extends Component {
     constructor(props) {
@@ -9,7 +9,7 @@ export default class Routes extends Component {
     render() {
         return (
           <Router history={browserHistory}>
-        	<Route path="/" component={IndexPage}>
+        	  <Route path="/" component={IndexPage}>
               <Route path="/IndexPage" component={IndexPage}/>
             </Route>
           </Router>
