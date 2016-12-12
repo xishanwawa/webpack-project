@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import reqwest from 'reqwest'
-import styles from './index.less';
+import './index.less';
 
-class ListDemo extends Component{
+class ListDemo extends React.Component{
 
   constructor(props){
 
@@ -29,7 +29,6 @@ class ListDemo extends Component{
         method: 'post',
         type: 'json',
     }).then(function (data) {
-      debugger
       that.setState({
          list: data.list
       })

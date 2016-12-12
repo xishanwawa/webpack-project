@@ -11,6 +11,11 @@ module.exports = {
 		path: __dirname + "/public",    //打包后的文件存放目录
 		filename: "[name]-[hash].js"    //打包后输出的文件名
 	},
+	// externals: {
+    //     react: 'React',
+    //     'react-dom': 'ReactDOM',
+	// 	immutable: 'Immutable'
+    // },
 	module: {
 		loaders:[
 			{
@@ -24,16 +29,19 @@ module.exports = {
 				loader: "babel"
 			},
 			//填充style 样式
-			// {
-   //              test: /\.(less)$/,
-   //              exclude: /node_modules/,
-	  //           loaders: ['style', 'css', 'less'],
-	  //       },
-            //生成独立的css文件
-		    {
-	          test: /\.(less)$/,
-	          loader: extractCSS.extract(['css', 'less'])
+			{
+                test: /\.(less)$/,
+	            loaders: ['style', 'css', 'less'],
 	        },
+			{
+                test: /\.(css)$/,
+	            loaders: ['style', 'css'],
+	        }
+            // //生成独立的css文件
+		    // {
+	        //   test: /\.(less)$/,
+	        //   loader: extractCSS.extract(['css', 'less'])
+	        // },
 		]
 	},
 	resolve: {

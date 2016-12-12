@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, Menu, Dropdown, Icon } from 'antd';
 
-export default class Counter extends Component {
+export default class Counter extends React.Component {
     constructor(props) {
       super(props)
     }

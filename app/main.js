@@ -5,9 +5,9 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from 'store'
-import Routes from 'routes'
+import Routes from 'routes/rootRoutes'
 import MockData from 'MockData'
-import 'antd/dist/antd.less'
+import 'components/stylesheet/antd.min.css'
 ReactDOM.render(
 	<Provider store={store}>
         <Routes />

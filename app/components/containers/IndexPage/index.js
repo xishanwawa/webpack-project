@@ -11,7 +11,7 @@ import ListDemo    from "./ListDemo"
 import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
 
 
-class IndexPage extends Component {
+class IndexPage extends React.Component {
     constructor(props) {
       super(props)
     }
