@@ -24,7 +24,7 @@ module.exports = {
 			},
 			//填充style 样式
 			{
-                test: /\.(less)$/,
+                test: /\.(less|css)$/,
                 exclude: /node_modules/,
 	            loaders: ['style', 'css', 'less'],
 	        },
