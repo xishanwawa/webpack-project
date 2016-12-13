@@ -9,7 +9,8 @@ module.exports = {
 	entry: __dirname + "/app/main.js",  //入口文件
 	output: {
 		path: __dirname + "/public",    //打包后的文件存放目录
-		filename: "[name]-[hash].js"    //打包后输出的文件名
+		//filename: "[name]-[hash].js"    //打包后输出的文件名
+		filename: "[name]-min.js"    //打包后输出的文件名
 	},
 	// externals: {
     //     react: 'React',

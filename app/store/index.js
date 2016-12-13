@@ -16,5 +16,8 @@ const loggerMiddleware = createLogger();
 //   )
 // );
 
-export let store = createStore( rootReducer, applyMiddleware (thunkMiddleware));
+// `__INITIAL_STATE__` 来自服务器端渲染，下一部分细说
+const initialState = window.__INITIAL_STATE__;
+
+export let store = createStore( rootReducer, initialState, applyMiddleware (thunkMiddleware));
 
