@@ -11,9 +11,7 @@ function renderFullPage(html, initialState) {
     </head>
     <body>
       <div id="root">
-        <div>
           ${html}
-        </div>
       </div>
       <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
