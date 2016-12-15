@@ -1,0 +1,18 @@
+{
+  "preset":"airbnb",
+  "fileExtensions": [
+    ".js",
+    ".jsx"
+  ],
+  "excludeFiles": [
+    "node_modules/**",
+    "Dropbox/**",
+    "lib/**",
+    ".jscsrc/**",
+    "data/**",
+    "package/**",
+    "shared/**"
+  ],
+  "validateIndentation": "\t",
+  "requireSpacesInsideParentheses": "all"
+}

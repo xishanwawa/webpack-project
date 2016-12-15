@@ -58,6 +58,10 @@ module.exports = {
     },
 	devtool: 'source-map',
 	plugins: [
+		new webpack.DllReferencePlugin({
+			context: __dirname,
+			manifest: require('./manifest.json'),
+		}),
         new webpack.BannerPlugin("Copyright yangtianming Unicorns inc."), //在这个数组中new一个就可以了
         new HtmlWebpackPlugin({
 	      template: __dirname + "/app/index.tmpl.html",
