@@ -50,6 +50,7 @@ module.exports = {
         alias: {
             actionsReducers: path.join(__dirname, 'app/actionsReducers'),
             components: path.join(__dirname, 'app/components'),
+			containers: path.join(__dirname, 'app/containers'),
             store: path.join(__dirname, 'app/store'),
             routes: path.join(__dirname, 'app/routes'),
 			MockData: path.join(__dirname, 'app/mock'),
