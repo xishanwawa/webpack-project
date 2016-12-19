@@ -1,5 +1,4 @@
 import Immutable from 'immutable'
-import { store } from 'store';
 import keyMirror from 'keyMirror';
 
 // const INCREMENT = 'INCREMENT';

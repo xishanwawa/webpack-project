@@ -1,19 +1,18 @@
 const webpack = require('webpack');
 
 const vendors = [
-  'antd',
-  'isomorphic-fetch',
   'react',
   'react-dom',
+  'redux',
+  'immutable',
   'react-redux',
   'react-router',
   'react-router-redux',
-  'redux',
   'redux-logger',
   'redux-thunk',
-  'immutable',
+  'isomorphic-fetch',
+  'keymirror',
   'reqwest',
-  'mockjs',
 ];
 
 module.exports = {
@@ -30,6 +29,6 @@ module.exports = {
       path: 'manifest.json',
       name: '[name]_[chunkhash]',
       context: __dirname,
-    }),
+    })
   ],
 };

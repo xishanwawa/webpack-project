@@ -1,16 +1,23 @@
 //webpack.config.js
 var webpack = require('webpack');
 var path = require('path');
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('[name]-[hash].css')
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var hostIP = 'localhost';
+var portNumber = '3000';
 module.exports = {
-	entry: __dirname + "/app/main.js",  //入口文件
+	entry: {
+          main: __dirname + "/app/main.js",  //入口文件
+		  vendor: ['antd']
+	},
 	output: {
 		path: __dirname + "/public",    //打包后的文件存放目录
-		//filename: "[name]-[hash].js"    //打包后输出的文件名
-		filename: "[name]-min.js"    //打包后输出的文件名
+		filename: "[name]-[hash].js",   //打包后输出的文件名
+		//publicPath: __dirname + "/public",
+		chunkFilename: '[id].chunk.js'
 	},
 	// externals: {
     //     react: 'React',
@@ -53,7 +60,8 @@ module.exports = {
 			containers: path.join(__dirname, 'app/containers'),
             store: path.join(__dirname, 'app/store'),
             routes: path.join(__dirname, 'app/routes'),
-			MockData: path.join(__dirname, 'app/mock'),
+			assets: path.join(__dirname, 'app/assets'),
+			mockData: path.join(__dirname, 'app/mockData'),
         },
     },
 	devtool: 'source-map',
@@ -69,6 +77,10 @@ module.exports = {
 	    new webpack.HotModuleReplacementPlugin(),                         //热加载插件
 	    extractCSS,                                                        //生成独立文件插件，和module对应
 		new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
+		new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+		new webpack.optimize.MinChunkSizePlugin({
+            minChunkSize: 10240
+        }),
     ],
 	devServer: {
 		headers: {

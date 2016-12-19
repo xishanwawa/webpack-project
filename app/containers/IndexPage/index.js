@@ -4,14 +4,17 @@
  */
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
 import Counter     from "./Counter"
 import ListDemo    from "./ListDemo"
-
 import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
+import mockData from 'mockData'
 
+// import { RaisedButton } from 'material-ui'
+// import getMuiTheme from  'material-ui/styles/getMuiTheme'
+// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 
 class IndexPage extends React.Component {
+
     constructor(props) {
       super(props)
     }
@@ -19,12 +22,23 @@ class IndexPage extends React.Component {
     componentDidMount() {
     }
 
+    // getChildContext () {
+    //   return {
+    //     muiTheme: getMuiTheme(darkBaseTheme),
+    //   };
+    // }
+
+    // static prop: 2: {
+    //   muiTheme: React.PropTypes.object
+    // }
+
     render() {
     	const { $$state } = this.props;
     	let value = $$state.get("val");
 
         return (
         	<div>
+              {/*<RaisedButton label="Default" />*/}
               <Counter
                 value={value}
                 onIncrement={ this.props.onIncrement.bind(this) }
