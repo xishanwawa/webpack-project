@@ -4,11 +4,10 @@
  */
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import ListDemo    from "./ListDemo"
+import mockData from 'mockData'
 
-import Counter     from "./Counter"
-import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
-
-class IndexPage extends React.Component {
+class ListPage extends React.Component {
 
     constructor(props) {
       super(props)
@@ -23,11 +22,7 @@ class IndexPage extends React.Component {
 
         return (
         	<div>
-              <Counter
-                value={value}
-                onIncrement={ this.props.onIncrement.bind(this) }
-                onDecrement={  this.props.onDecrement.bind(this) }
-              />
+              <ListDemo />
           </div>
         )
     }
@@ -60,6 +55,4 @@ function mapStateToProps(state) {
 }
 
 module.exports = connect(mapStateToProps, {
-  onIncrement,
-  onDecrement,
-})(IndexPage)
+})(ListPage)

@@ -15,9 +15,9 @@ module.exports = {
 	},
 	output: {
 		path: __dirname + "/public",    //打包后的文件存放目录
-		filename: "[name]-[hash].js",   //打包后输出的文件名
-		//publicPath: __dirname + "/public",
-		chunkFilename: '[id].chunk.js'
+		// publicPath: __dirname + "/public",
+		filename: "[name]-[hash:8].js",   //打包后输出的文件名
+		chunkFilename: '[id].[chunkhash:8].chunk.js'
 	},
 	// externals: {
     //     react: 'React',

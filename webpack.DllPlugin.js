@@ -18,8 +18,8 @@ const vendors = [
 module.exports = {
   output: {
     path: 'public',
-    filename: '[name].[chunkhash].js',
-    library: '[name]_[chunkhash]',
+    filename: '[name].[chunkhash:8].js',
+    library: '[name]_[chunkhash:8]',
   },
   entry: {
     vendor: vendors,
@@ -27,7 +27,7 @@ module.exports = {
   plugins: [
     new webpack.DllPlugin({
       path: 'manifest.json',
-      name: '[name]_[chunkhash]',
+      name: '[name]_[chunkhash:8]',
       context: __dirname,
     })
   ],
