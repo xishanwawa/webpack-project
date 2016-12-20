@@ -4,7 +4,7 @@ var path = require('path');
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractCSS = new ExtractTextPlugin('[name]-[hash].css')
+var extractCSS = new ExtractTextPlugin('[name]-[contenthash:8].css')
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var hostIP = 'localhost';
 var portNumber = '3000';
@@ -14,8 +14,8 @@ module.exports = {
 		  vendor: ['antd']
 	},
 	output: {
-		path: __dirname + "/public",    //打包后的文件存放目录
-		// publicPath: __dirname + "/public",
+		//path: __dirname + "/public",    //打包后的文件存放目录
+		publicPath: 'http://' + hostIP + ':'+ portNumber +'/',
 		filename: "[name]-[hash:8].js",   //打包后输出的文件名
 		chunkFilename: '[id].[chunkhash:8].chunk.js'
 	},
