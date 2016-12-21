@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import reqwest from 'reqwest'
+import { Table, Icon } from 'antd';
 import './index.less';
 
 class ListDemo extends React.Component{
@@ -39,28 +40,31 @@ class ListDemo extends React.Component{
 
   render() {
 
-    let nodeList = '';
-
-    nodeList = this.state.list.map(function(item, i){
-       return <p className = {"tr"} key = {i}>
-        <span className = {'td'}>{item.id}</span>
-        <span className = {'td'}>{item.number}</span>
-        <span className = {'td'}>{item.string}</span>
-        <span className = {'td'}>{item.array}</span>
-        <span className = {'td'}>{item.date}</span>
-       </p> 
-    });
+    const columns = [{
+      title: 'id',
+      dataIndex: 'id',
+      key: 'id',
+    }, {
+      title: 'number',
+      dataIndex: 'number',
+      key: 'number',
+    }, {
+      title: 'star',
+      dataIndex: 'string',
+      key: 'string',
+    },{
+      title: 'array',
+      dataIndex: 'array',
+      key: 'array',
+    },{
+      title: 'date',
+      dataIndex: 'date',
+      key: 'date',
+    }];
 
     return (
-      <div className={"root"} >
-        <p className = {"tr"} style = {{margin: "10px 0"}}>
-        <span className = {'td'}>{"id"}</span>
-        <span className = {'td'}>{"number"}</span>
-        <span className = {'td'}>{"star"}</span>
-        <span className = {'td'}>{"array"}</span>
-        <span className = {'td'}>{"date"}</span>
-       </p> 
-        {nodeList}
+      <div className={"list-demo-root"} >
+        <Table columns={columns} dataSource={this.state.list} />
       </div>
     );
   }

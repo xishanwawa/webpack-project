@@ -10,19 +10,19 @@ const routes = {
   
   childRoutes: [
     { 
-      path: 'IndexPage', 
+      path: 'index-page', 
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
           cb(null, require('containers/IndexPage'))
-        })
+        }, 'indexPage')
       }
     },
     { 
-      path: 'ListPage', 
+      path: 'list-page', 
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
           cb(null, require('containers/ListPage'))
-        })
+        }, 'listPage')
       }
     },
     // { 
@@ -42,7 +42,7 @@ const routes = {
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
       cb(null, require('containers'))
-    })
+    }, 'index')
   }
 }
 

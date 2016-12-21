@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const vendors = [
   'react',
   'react-dom',
+  'classnames',
   'redux',
   'immutable',
   'react-redux',
