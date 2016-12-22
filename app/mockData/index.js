@@ -1,4 +1,4 @@
-// import Mock   from 'mockjs'
+import Mock   from 'mockjs'
 
 // let data = Mock.mock('http://g.cn', {
 //     // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
