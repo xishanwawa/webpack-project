@@ -10,6 +10,9 @@ import SiderMenu        from "components/common/Menu"
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+import IndexPage from 'containers/IndexPage';
+import ShowHideArrow from 'components/common/ShowHideArrow'
+import Notice from 'components/common/Notice'
 
 import "./index.less"
 
@@ -26,7 +29,7 @@ class Index extends React.Component {
     componentDidMount() {
     }
 
-    showHideMenu(data){
+    showHideMenuEvent(data){
         this.setState({
           showHideMenu: data,
         });
@@ -45,7 +48,7 @@ class Index extends React.Component {
       });
       return (
         <div className = "ck-root">
-            <Header showHideMenu = {this.showHideMenu.bind(this)} />
+            <Header />
             <Menu 
               onClick={this.changeMenu.bind(this)}
               selectedKeys={[this.state.current]}
@@ -58,13 +61,23 @@ class Index extends React.Component {
               <Menu.Item key="mail">
                 <Icon type="folder" />第一部门
               </Menu.Item>
+              <Menu.Item key="mail2">
+                <Icon type="folder" />第二部门
+              </Menu.Item>
+              <Menu.Item key="mail3">
+                <Icon type="folder" />第三部门
+              </Menu.Item>
             </Menu>
             <SiderMenu
-              showHideMenu = {this.state.showHideMenu} 
+                showHideMenu = {this.state.showHideMenu} 
             />
             <div className = {showHideMenu}>
-                { this.props.children || "index" }
+                { this.props.children || <IndexPage /> }
             </div>
+            <ShowHideArrow 
+                showHideMenuEvent = {this.showHideMenuEvent.bind(this)} 
+            />
+            <Notice />
         </div>
       )
     }

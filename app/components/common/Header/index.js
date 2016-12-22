@@ -2,14 +2,13 @@
  * Created by yangtm
  */
 import React, { Component, PropTypes } from 'react'
-import ShowHideArrow from 'components/common/ShowHideArrow'
 import classNames  from 'classnames';
 
 import './index.less'
 
 class Header extends React.Component {
   static defaultProps = {
-    showHideMenu: function(date) {
+    handle: function(date) {
         console.log(date);
     }
   }
@@ -19,17 +18,10 @@ class Header extends React.Component {
       this.state = {
       }
   }
-  
-  showHideMenu(data) {
-      this.props.showHideMenu(data);
-  }
 
   render() {
     return (
       <div className="header">
-         <ShowHideArrow 
-             showHideMenu = {this.showHideMenu.bind(this)} 
-         />
       </div>
     )
   }

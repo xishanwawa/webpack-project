@@ -20,12 +20,12 @@ class ShowHideArrow extends React.Component {
       }
   }
   
-  showHideMenu() {
+  showHideMenuEvent() {
       let showHideMenu = !this.state.showHideMenu; 
       this.setState({
         showHideMenu
       });
-      this.props.showHideMenu(showHideMenu);
+      this.props.showHideMenuEvent(showHideMenu);
   }
 
   render() {
@@ -38,7 +38,7 @@ class ShowHideArrow extends React.Component {
     });
 
     return (
-         <div className={showHideMenu} onClick = {this.showHideMenu.bind(this)}>
+         <div className={showHideMenu} onClick = {this.showHideMenuEvent.bind(this)}>
             <div className="line-wrap">
                 <div className="line top"></div>
                 <div className="line center"></div>
