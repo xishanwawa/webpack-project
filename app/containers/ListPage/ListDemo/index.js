@@ -26,7 +26,7 @@ class ListDemo extends React.Component{
 
     let that = this;
     reqwest({
-        url: 'http://g1.cn',
+        url: 'http://yangtianming.cn',
         method: 'post',
         type: 'json',
     }).then(function (data) {

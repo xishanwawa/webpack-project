@@ -14,6 +14,7 @@ const vendors = [
   'isomorphic-fetch',
   'keymirror',
   'reqwest',
+  'mockjs',
 ];
 
 module.exports = {

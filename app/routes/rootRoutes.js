@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { Router, Route, hashHistory, browserHistory } from 'react-router';
+import { Router, Route, hashHistory, browserHistory, IndexRoute } from 'react-router';
 
 // import Index from 'containers/Index';
 // import IndexPage from 'containers/IndexPage';
 
-const routes = {
+const routeConfig = {
   path: '/',
   // component: Index,
   
@@ -15,7 +15,19 @@ const routes = {
         require.ensure([], (require) => {
           cb(null, require('containers/IndexPage'))
         }, 'indexPage')
-      }
+      },
+      // onEnter: function () {
+      //   let r = confirm("Press a button")
+      //   if (r == true){
+      //     return 'ok';
+      //   }else{
+      //     return false;
+      //   }
+      // },
+      // onLeave: function (nextState, replaceState) {
+      //     //replaceState(null, '/index-page/' + nextState.params.id);
+      //     //return false;
+      // }
     },
     { 
       path: 'list-page', 
@@ -52,7 +64,7 @@ export default class Routes extends Component {
     }
     render() {
         return (
-          <Router routes={routes} history={browserHistory} />
+          <Router routes={routeConfig} history={browserHistory} />
         )
     }
 }
