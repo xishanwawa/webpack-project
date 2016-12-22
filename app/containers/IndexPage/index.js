@@ -5,7 +5,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 // import { Lifecycle } from 'react-router'
-import reactMixin  from 'react-mixin';
+// import reactMixin  from 'react-mixin';
 
 import Counter     from "./Counter"
 import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
