@@ -1,64 +1,30 @@
-.isolate {
-	position: relative;
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	padding: 0;
-	vertical-align: middle;
-	cursor: pointer;
-	border-radius: 50%;
-
-	/*收起效果*/
-
-	&:before {
-		content: "";
-		left: 0;
-		position: absolute;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.2);
-		transition: all;
-		transition-duration: 300ms;
-		backface-visibility: hidden;
-		transform: scale(0);
-		z-index: 0;
-	}
-
-	&.open:before {
-		transform: scale(1);
-		left: 0;
-	}
-
-	.line-wrap {
-		width: 18px;
-		height: 12px;
-		transition: all;
-		transition-duration: 300ms;
-		margin: 14px 10px;
-	}
-
-	.line {
-		width: 18px;
-		height: 2px;
-		background-color: #fff;
-	}
-
-	.center {
-		margin: 3px 0;
-	}
-
+.notice {
+	position: absolute;
+	right: -400px;
+    top: 80px;
+	width: 400px;
+	height: 400px;
+	background-color: #fff; 
+	box-shadow: -3px -1px 2px 2px rgba(0, 0, 0, 0.11);
+	transition: right .3s;
 	&.open {
-		.line-wrap {
-			transform: rotate(180deg);
-		}
-		.top {
-			transform: translateX(8px) translateY(1px) rotate(45deg);
-			width: 12px;
-		}
-		.bottom {
-			transform: translateX(8px) translateY(-1px) rotate(-45deg);
-			width: 12px;
+		right: 0;
+	}
+	.handle {
+		position: absolute;
+		top:0;
+		left: -50px;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		font-size: 20px;
+		background-color: #fff; 
+		box-shadow: -3px -1px 2px 2px rgba(0, 0, 0, 0.11);
+		cursor: pointer;
+		transition: color .3s;
+		&:hover {
+			color: #108ee9;
 		}
 	}
 }

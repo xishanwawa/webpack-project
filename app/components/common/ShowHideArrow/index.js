@@ -38,7 +38,7 @@ class ShowHideArrow extends React.Component {
     });
 
     return (
-         <div className={showHideMenu} onClick = {this.showHideMenuEvent.bind(this)}>
+         <div className={showHideMenu} onClick = {this.showHideMenuEvent.bind(this)}  title = "显示隐藏左边菜单">
             <div className="line-wrap">
                 <div className="line top"></div>
                 <div className="line center"></div>

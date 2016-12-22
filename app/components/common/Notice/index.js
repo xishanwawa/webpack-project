@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react'
 import classNames  from 'classnames';
-
+import { Icon } from 'antd';
 import './index.less'
 
 class Notice extends React.Component {
@@ -36,7 +36,10 @@ class Notice extends React.Component {
     });
 
     return (
-        <div className={showHideNotice} onClick = {this.handleNotice.bind(this)}>
+        <div className={showHideNotice} >
+            <div className="handle" onClick = {this.handleNotice.bind(this)} title = "公告">
+               <Icon type="notification" />
+            </div>
         </div>
     )
 
