@@ -7,10 +7,10 @@ import { connect } from 'react-redux'
 import classNames  from 'classnames';
 import Header      from "components/common/Header"
 import SiderMenu        from "components/common/Menu"
+
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
-import IndexPage from 'containers/IndexPage';
 import ShowHideArrow from 'components/common/ShowHideArrow'
 import Notice from 'components/common/Notice'
 
@@ -68,11 +68,16 @@ class Index extends React.Component {
                 <Icon type="folder" />第三部门
               </Menu.Item>
             </Menu>
-            <SiderMenu
-                showHideMenu = {this.state.showHideMenu} 
-            />
-            <div className = {showHideMenu}>
-                { this.props.children || <IndexPage /> }
+            <div  className = "ck-main">
+              <SiderMenu
+                  showHideMenu = {this.state.showHideMenu} 
+              />
+              <div className = {showHideMenu}>
+                  { this.props.children || "Hello" }
+              </div>
+              <div className="main-right-list">
+                <div>今日任务：</div>
+              </div>
             </div>
             <ShowHideArrow 
                 showHideMenuEvent = {this.showHideMenuEvent.bind(this)} 
