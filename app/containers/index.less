@@ -1,16 +1,47 @@
 .ck-root{
-    .first-child {
+    .ck-main {
         position: absolute;
         top: 106px;
+        left:0;
         right: 0;
-        left: 0;
         bottom: 0;
-        padding: 10px 20px;
-        background-color: #fff;
-        overflow: auto;
-        transition: left .3s;
-        &.open {
-            left: 230px;
+        .first-child {
+            position: absolute;
+            top: 0;
+            right: 240px;
+            left: 0;
+            bottom: 0;
+            padding: 10px 20px;
+            background-color: #fff;
+            overflow: auto;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: left .3s;
+            &.open {
+                left: 230px;
+            }
+        }
+        .menu-box {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left:-220px;
+            width: 220px;
+            border-right: 1px solid #e9e9e9;
+            background-color: #fff;
+            overflow: hidden;
+            transition: left .3s;
+            &.open{
+                left:0;
+            }
+        }
+        .main-right-list {
+            position: absolute;
+            right: 10px;
+            width: 220px;
+            height: 200px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
     }
 }
