@@ -1,6 +1,7 @@
 //webpack.config.js
 var webpack = require('webpack');
 var path = require('path');
+var babelpolyfill = require("babel-polyfill");
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');

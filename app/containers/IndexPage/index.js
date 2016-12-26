@@ -1,9 +1,12 @@
 
 /**
- * Created by ytm on 4/7/16.
+ * Created by ytm
  */
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Modal, Button } from 'antd';
+
+// const confirm = Modal.confirm;
 // import { Lifecycle } from 'react-router'
 // import reactMixin  from 'react-mixin';
 
@@ -17,6 +20,7 @@ class IndexPage extends React.Component {
     }
 
     componentDidMount() {
+
         //网上给的错误教程，setRouteLeaveHook函数在props.router里
         // this.context.router.setRouteLeaveHook(
         //   this.props.route,
@@ -38,7 +42,32 @@ class IndexPage extends React.Component {
           console.log("离开个毛！");
           return false
         }
-        //return '真的离开吗?'
+        
+        // let r = true;
+        // var asyncReadFile = async () => {
+        //   await confirm({
+        //     title: '不要走，决战到天亮?',
+        //     content: '',
+        //     okText: '相忘于江湖',
+        //     cancelText: '白头偕老',
+        //     onOk() {
+        //       console.log("离开！");
+        //     },
+        //     onCancel() {
+        //       console.log("离开个毛！");
+        //       return false
+        //     }
+        //   });
+        // };
+
+        // asyncReadFile();
+
+        // if(r == true){
+        //   console.log("离开！");
+        // }else{
+        //   console.log("离开个毛！");
+        //   return false
+        // }
     }
 
     render() {

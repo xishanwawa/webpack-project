@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import reqwest from 'reqwest'
+import "babel-polyfill";
 import { Table, Icon } from 'antd';
 import './index.less';
 
@@ -17,23 +18,30 @@ class ListDemo extends React.Component{
   
   componentDidMount(){
 
+    var asyncReadFile = async () => {
+        var data = await reqwest({
+            url: 'http://yangtianming.cn',
+            method: 'post',
+            type: 'json',
+        });
 
-    // async function f() {
-    //   return 'hello world';
-    // };
+        this.setState({
+            list: data.list
+        })
+    };
+      
+    asyncReadFile();
 
-    // f().then(v => console.log(v));
-
-    let that = this;
-    reqwest({
-        url: 'http://yangtianming.cn',
-        method: 'post',
-        type: 'json',
-    }).then(function (data) {
-      that.setState({
-         list: data.list
-      })
-    })
+    // let that = this;
+    // reqwest({
+    //     url: 'http://yangtianming.cn',
+    //     method: 'post',
+    //     type: 'json',
+    // }).then(function (data) {
+    //   that.setState({
+    //      list: data.list
+    //   })
+    // })
 
   }
 
