@@ -11,6 +11,7 @@ import { Modal, Button } from 'antd';
 // import reactMixin  from 'react-mixin';
 
 import Counter     from "./Counter"
+import MoveList     from "components/MoveList"
 import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
 
 class IndexPage extends React.Component {
@@ -81,6 +82,7 @@ class IndexPage extends React.Component {
                 onIncrement={ this.props.onIncrement.bind(this) }
                 onDecrement={  this.props.onDecrement.bind(this) }
               />
+              <MoveList />
           </div>
         )
     }
