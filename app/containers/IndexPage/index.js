@@ -11,7 +11,7 @@ import { Modal, Button } from 'antd';
 // import reactMixin  from 'react-mixin';
 
 import Counter     from "./Counter"
-import MoveList     from "components/MoveList"
+import MoveList    from "components/MoveList"
 import {onIncrement, onDecrement} from "actionsReducers/IndexPage"
 
 class IndexPage extends React.Component {

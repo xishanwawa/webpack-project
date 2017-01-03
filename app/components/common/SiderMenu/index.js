@@ -38,6 +38,7 @@ class SiderMenu extends React.Component {
             <SubMenu key="sub1" title={<span><Icon type="folder" /><span>基本功能</span></span>}>
               <Menu.Item key="1"><Link to="/index-page"><Icon type="file" />设置</Link></Menu.Item>
               <Menu.Item key="2"><Link to="/list-page"><Icon type="file" />列表</Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/date-page"><Icon type="file" />日历</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </div>

@@ -37,6 +37,14 @@ const routeConfig = {
         }, 'listPage')
       }
     },
+    { 
+      path: 'date-page', 
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('containers/DatePage'))
+        }, 'DatePage')
+      }
+    },
     // { 
     //   path: 'inbox', 
     //   component: IndexPage 

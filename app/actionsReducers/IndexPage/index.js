@@ -59,7 +59,6 @@ const indexPageReducer = ($$state = Immutable.fromJS({val: 0}), action) => {
 		})
     },
     'default': function () {
-		debugger
     	return $$state;
     }
   };
