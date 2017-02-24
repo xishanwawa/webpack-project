@@ -43,9 +43,15 @@ class Index extends React.Component {
         <TopMenu/>
         <div className="ck-main">
           <div className={showHideMenu}><SiderMenu/></div>
-          <div className={showHideFirstChild}>{this.props.children || "Hello"}</div>
-          <div className="main-right-list">
-            <div>今日任务：</div>
+          <div className={showHideFirstChild}>
+           <div className="ck-main-con">
+             {this.props.children || "Hello"}
+           </div>
+          </div>
+          <div className="main-right-list flex">
+            <div className="div"></div>
+            <div className="div"></div>
+            <div className="div"></div>
           </div>
         </div>
         <ShowHideArrow showHideMenuEvent={this.showHideMenuEvent.bind(this)} />

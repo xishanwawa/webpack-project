@@ -18,7 +18,7 @@ class ListPage extends React.Component {
 
     return (
       <div>
-        <DatePicker/>
+        <DatePicker />
       </div>
     )
   }

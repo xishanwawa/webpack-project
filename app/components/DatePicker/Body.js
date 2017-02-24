@@ -115,21 +115,21 @@ class DatePickerBody extends React.Component {
 
         return <li key={i} className = {className} onClick = {that.props.daysOnClick.bind(that, {year:preYear, month:preMonth, day:item})} >{item}</li>
     });
+    
     nodeCurrent = CurrentDays.map(function( item, i ){
       let className = "";
       if(that.props.fcState == 'month'){
         className += "checked-day"
-      };
-      if(that.props.fcState == 'week'){
+      }else if (that.props.fcState == 'week') {
         if( getWeekBtw.indexOf(month+"-"+item) > -1 ){
           className += " checked-day"
-        }
-      };
-      if(that.props.fcState == 'day' && item == day ){
+        };
+      }else if (that.props.fcState == 'day' && item == day ) {
         className += "checked-day"
       }
       return <li  key={i} className = {className} onClick = {that.props.daysOnClick.bind(that, {year, month, day:item})} >{item}</li>;
-    });
+    })
+
     nodeNext = nextDays.map(function( item, i ){
         let preYear, preMonth;
         let className = "fc-past";

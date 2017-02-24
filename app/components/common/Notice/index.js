@@ -15,7 +15,7 @@ class Notice extends React.Component {
   constructor() {
       super()
       this.state = {
-        showHideNotice: true
+        showHideNotice: false
       }
   }
   

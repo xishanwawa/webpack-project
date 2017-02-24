@@ -18,9 +18,9 @@ class CkDatePicker extends React.Component {
       super()
       var newDate =  new Date();
       this.state = {
-          year:  newDate.getFullYear(),
-          month: newDate.getMonth() + 1,
-          day:   newDate.getDate(),
+          checkedYear: newDate.getFullYear(),
+          checkedMonth: newDate.getMonth() + 1,
+          checkedDay: newDate.getDate()
       }
   }
 
@@ -48,17 +48,17 @@ class CkDatePicker extends React.Component {
     return (
       <div className="datepicker unselectable">
         <DatePickerHeader 
-          year           = {this.state.year}
-          month          = {this.state.month}
+          year           = {this.state.checkedYear}
+          month          = {this.state.checkedMonth}
           prevYearClick  = {this.prevYear.bind(this)}
           nextYearClick  = {this.nextYear.bind(this)}
           prevMonthClick = {this.prevMonth.bind(this)}
           nextMonthClick = {this.nextMonth.bind(this)}
         />
         <DatePickerBody
-          year        = {this.state.year}
-          month       = {this.state.month}
-          day         = {this.state.day}
+          year        = {this.state.checkedYear}
+          month       = {this.state.checkedMonth}
+          day         = {this.state.checkedDay}
           daysOnClick = {this.checkDays.bind(this)}
         />
       </div>

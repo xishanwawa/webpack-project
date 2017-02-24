@@ -45,6 +45,14 @@ const routeConfig = {
         }, 'DatePage')
       }
     },
+    { 
+      path: 'control-library', 
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('containers/ControlLibrary'))
+        }, 'ControlLibrary')
+      }
+    },
     // { 
     //   path: 'inbox', 
     //   component: IndexPage 
