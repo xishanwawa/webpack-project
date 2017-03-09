@@ -1,18 +1,28 @@
 # SortAbleList 使用说明
 
 ## 引入组件 
---import SortAbleList from 'components/SortAbleList' (？！path路径根据自己情况定)
+```
+import SortAbleList from 'components/SortAbleList' (？！path路径根据自己情况定)
+```
 
 ## 使用组件 
--- <SortAbleList />
+```
+<SortAbleList />
+```
 
 ## 组件属性API
 -- 列头信息 columns = {columns} 必须
+
 -- 数据信息 data = {data} 必须
+
 -- 是否可排序 sortAble = {true/false} 非必须 默认true
+
 -- 是否支持增删  addAndDelAble = {true/false} 非必须 默认true
+
 -- 是否可编辑    editAble = {true/false} 非必须 默认true
+
 -- 回调函数 onChange = {data => { console.log(data)} } 非必须（但是如果不传，你用该组件的意义是啥？） //参数data为改变后的数据 
+
 
 ## columns列头信息格式
 -- title： 列的头名称； 必须
