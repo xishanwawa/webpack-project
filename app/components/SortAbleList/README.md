@@ -47,7 +47,7 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 
 
 ```
-columns: [
+columns = [
     { 
     title: 'tab 名称', 
     dataIndex: 'name', 
@@ -70,8 +70,9 @@ columns: [
         }
     ]
     }
-],
-data:[
+]
+
+data = [
     { 
     name: '页签不会太长的',
     tableType:'table1', 
