@@ -21,7 +21,7 @@ class ListPage extends React.Component {
     	let value = $$state.get("val");
 
         return (
-        	<div>
+        	<div style={{ padding:'20px' }}>
               <ListDemo />
           </div>
         )

@@ -17,7 +17,7 @@ class ListPage extends React.Component {
     const {$$state} = this.props;
 
     return (
-      <div>
+      <div style={{ padding:'20px' }}>
         <DatePicker />
       </div>
     )

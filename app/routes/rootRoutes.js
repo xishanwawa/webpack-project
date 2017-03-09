@@ -53,6 +53,14 @@ const routeConfig = {
         }, 'ControlLibrary')
       }
     },
+    { 
+      path: 'field-settings', 
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('containers/FieldSettings'))
+        }, 'FieldSettings')
+      }
+    },
     // { 
     //   path: 'inbox', 
     //   component: IndexPage 

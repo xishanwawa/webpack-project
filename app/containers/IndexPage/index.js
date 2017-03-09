@@ -76,7 +76,7 @@ class IndexPage extends React.Component {
     	let value = $$state.get("val");
 
         return (
-        	<div>
+        	<div style={{ padding:'20px' }}>
               <Counter
                 value={value}
                 onIncrement={ this.props.onIncrement.bind(this) }
