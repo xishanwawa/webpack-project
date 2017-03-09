@@ -47,21 +47,40 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 
 
 ```
-data = [
+columns: [
     { 
-        name: 'Tab 1',
-        tableType:'text', 
-
-        show: true, 
-        beizhu:'11111', 
-        key: 1
+    title: 'tab 名称', 
+    dataIndex: 'name', 
+    key: 'name',
+    render: 'input',
     },
     { 
-        name: 'Tab 2',
-        tableType:'inputNumber', 
-        show: false, 
-        beizhu:'22222', 
-        key: 2 
+    title: '对应查看表', 
+    dataIndex: 'tableType', 
+    key: 'tableType',
+    render: 'select',
+    selectList:[
+        {
+        name:'表一',
+        val:'table1'
+        },
+        {
+        name:'表二',
+        val:'table2'
+        }
+    ]
+    }
+],
+data:[
+    { 
+    name: '页签不会太长的',
+    tableType:'table1', 
+    key: 1
     },
-];
+    { 
+    name: '一般是2到7个字',
+    tableType:'table2', 
+    key: 2
+    },
+]
 ```
