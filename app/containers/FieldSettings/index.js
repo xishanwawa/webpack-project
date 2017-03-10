@@ -10,7 +10,14 @@ const TabPane = Tabs.TabPane;
 
 import FieldSetting from 'components/FieldSetting'
 import SortAbleList from 'components/SortAbleList'
-import mockData from 'mockData'
+import {  
+  SetCheckboxFormat,
+  SetDateFormat,
+  SetInputFormat,
+  SetInputNumberFormat,
+  SetRadioFormat,
+  SetSwitchFormat,
+  SetTextareaFormat} from 'components/SetFormFormat'
 
 class FieldSettings extends React.Component {
 
@@ -78,7 +85,7 @@ class FieldSettings extends React.Component {
           title: 'switch text', 
           dataIndex: 'show', 
           key: 'show',
-          render: 'switch'
+          render: 'boolean'
         }
       ];
 
@@ -169,20 +176,20 @@ class FieldSettings extends React.Component {
         visible: true,
         setType
       });
-    };
+    }
 
-      handleOk = (e) => {
-        console.log(e);
-        this.setState({
-          visible: false,
-        });
-      }
-      handleCancel = (e) => {
-        console.log(e);
-        this.setState({
-          visible: false,
-        });
-      }
+    handleOk = (e) => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    }
+    handleCancel = (e) => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    }
 
     //改变
     changePanes(panes){
@@ -200,22 +207,25 @@ class FieldSettings extends React.Component {
       switch(this.state.setType)
       {
       case 'text':
-        nodeSetType = <div>单行文本</div>;
+        nodeSetType = <SetInputFormat />;
         break;
       case 'textarea':
-        nodeSetType = <div>多行文本</div>;
+        nodeSetType = <SetTextareaFormat />;
         break;
       case 'radio':
-        nodeSetType = <div>单选框</div>;
+        nodeSetType = <SetRadioFormat />;
         break;
       case 'checkbox':
-        nodeSetType = <div>多选框</div>;
+        nodeSetType = <SetCheckboxFormat />;
         break;
       case 'inputNumber':
-        nodeSetType = <div>数字</div>;
+        nodeSetType = <SetInputNumberFormat />;
+        break;
+      case 'boolean':
+        nodeSetType = <SetSwitchFormat />;
         break;
       case 'date':
-        nodeSetType = <div>日期</div>;
+        nodeSetType = <SetDateFormat />;
         break;
       default:
         nodeSetType = <div>无该字段设置项，请联系管理员</div>;
@@ -230,7 +240,7 @@ class FieldSettings extends React.Component {
             onChange = {this.changePanes.bind(this)} 
           />
           <Modal 
-            title="select control" 
+            title="组件设置" 
             visible={this.state.visible}
             onOk={this.handleOk} 
             onCancel={this.handleCancel}

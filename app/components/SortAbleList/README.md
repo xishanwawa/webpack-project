@@ -31,7 +31,7 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 
 -- key：每列的唯一key，因为里面的map方法我已经用了index了，哈哈。 一般可以与dataIndex同名（提倡这么做）；必须， 不过我已经搞成非必须了。
 
--- render：选择渲染的组件，目前支持 text，input，select， switch， link(?!外传事件用link，不再支持button。 不是因为合理，是因为懒)；
+-- render：选择渲染的组件，目前支持 text，input，select， boolean（switch）， link(?!外传事件用link，不再支持button。 不是因为合理，是因为懒)；
    非必须，那就默认为text。
 
 -- selectList： 当render为select的时候：需要定义下拉都有哪些项； 如果用了select，为必须

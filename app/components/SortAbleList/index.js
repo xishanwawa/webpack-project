@@ -114,7 +114,7 @@ class SortAbleList extends React.Component {
             return <Col key = {columnsItem.key} span={3}>
                 <Input onChange={this.changeFieldVal.bind(this, index, columnsItem.dataIndex)} value = {item[columnsItem.dataIndex]} style={{ width: 100 }} />
             </Col>;
-          }else if(columnsItem.render == "switch"){
+          }else if(columnsItem.render == "boolean"){
             return <Col key = {columnsItem.key} span={3}>
                 <Switch 
                   checked={item[columnsItem.dataIndex]}
