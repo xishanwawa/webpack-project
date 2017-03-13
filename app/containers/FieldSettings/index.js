@@ -282,6 +282,13 @@ class FieldSettings extends React.Component {
             addAndDelAble = {false}
             onChange = {this.changeTabData.bind(this)} 
           />
+          <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不显示列头：</div>
+          <SortAbleList 
+            columns = {this.state.tabColumns} 
+            data = {this.state.tabData} 
+            showTitle = {false}
+            onChange = {this.changeTabData.bind(this)} 
+          />
         </div>
       )
     }

@@ -25,6 +25,8 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 
 -- 是否可编辑    editAble = {true/false} 非必须 默认true
 
+-- 是否显示列头    showTitle = {true/false} 非必须 默认true
+
 -- 回调函数 onChange = {data => { console.log(data)} } 非必须（但是如果不传，你用该组件的意义是啥？） //参数data为改变后的数据 
 
 

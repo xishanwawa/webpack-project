@@ -14,6 +14,7 @@ class SortAbleList extends React.Component {
     addAndDelAbleSpan:3,
     sortAble: true,
     addAndDelAble:true,
+    showTitle: true,
     editAble:true,
     onChange: function (data) {
       console.log(data);
@@ -44,14 +45,12 @@ class SortAbleList extends React.Component {
       visible: false,
     });
   }
+  
   handleCancel = (e) => {
     console.log(e);
     this.setState({
       visible: false,
     });
-  }
-
-  componentDidMount() {
   }
 
   shiftUpField(index) {
@@ -102,6 +101,24 @@ class SortAbleList extends React.Component {
      fields.splice(index, 1);
      this.props.onChange(fields);
   }
+  
+
+  //支持可拖拽排序
+  // MouseDown(index, event){
+  //   console.log(index);
+  //   let Target = event.DOMEventTarget;
+  //   debugger
+
+	// 	if(!event){
+	// 		event = window.event;
+	// 	}
+
+	// 	let e = event;
+	// 	let pageX = e.pageX;
+	// 	let pageY = e.pageY;
+   
+  //   console.log(pageX+':'+ pageY);
+  // }
 
   render() {
     let fieldLength = this.props.data.length - 1;
@@ -143,7 +160,7 @@ class SortAbleList extends React.Component {
             </Col>;
           };
        });
-       return <li key = {index} >
+       return <li key = {index} onMouseDown = {this.MouseDown.bind(this, index)} >
               <Row>
                 {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>
                    <Button style={{ marginRight: 6 }} type="primary" onClick = {this.shiftUpField.bind(this, index)} disabled = {(index == 0) ? true : false} ><Icon type="arrow-up" /></Button>
@@ -157,16 +174,16 @@ class SortAbleList extends React.Component {
               </Row>
           </li>
     })
-
-    return (
-      <div className = "ck-sortable-list">
-        <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
+    let nodeColumns = this.props.showTitle ? <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
           {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>上移/下移</Col> : ''}
           {this.props.columns.map((item) => {
             return <Col key ={item.key} span={item.span || 3}>{item.title}</Col>
           })}
           {this.props.addAndDelAble ? <Col span={this.props.addAndDelAbleSpan}>添加/删除</Col> : ""}
-        </Row>
+        </Row>:null;
+    return (
+      <div className = "ck-sortable-list">
+        {nodeColumns}
         <ul>
         {nodeFieldList} 
         </ul>
