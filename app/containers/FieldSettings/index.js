@@ -240,7 +240,7 @@ class FieldSettings extends React.Component {
             onChange = {this.changePanes.bind(this)} 
           />
           <Modal 
-            title="组件设置" 
+            title= {this.state.setType+'设置'} 
             visible={this.state.visible}
             onOk={this.handleOk} 
             onCancel={this.handleCancel}

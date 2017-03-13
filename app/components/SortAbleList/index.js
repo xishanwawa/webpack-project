@@ -10,6 +10,8 @@ import './index.less'
 
 class SortAbleList extends React.Component {
   static defaultProps = {
+    sortAbleSpan:3,
+    addAndDelAbleSpan:3,
     sortAble: true,
     addAndDelAble:true,
     editAble:true,
@@ -106,16 +108,16 @@ class SortAbleList extends React.Component {
     let nodeFieldList = this.props.data.map((item, index) => {
        let nodeItemList =  this.props.columns.map((columnsItem, columnsIndex) => {
           if(!this.props.editAble){
-            return <Col key = {columnsItem.key} span={3}>
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 {item[columnsItem.dataIndex]}
             </Col>;
           };
           if(columnsItem.render == "input"){
-            return <Col key = {columnsItem.key} span={3}>
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 <Input onChange={this.changeFieldVal.bind(this, index, columnsItem.dataIndex)} value = {item[columnsItem.dataIndex]} style={{ width: 100 }} />
             </Col>;
           }else if(columnsItem.render == "boolean"){
-            return <Col key = {columnsItem.key} span={3}>
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 <Switch 
                   checked={item[columnsItem.dataIndex]}
                   onChange={this.switchFieldVal.bind(this, index, columnsItem.dataIndex)}
@@ -124,7 +126,7 @@ class SortAbleList extends React.Component {
                 />
             </Col>;
           }else if(columnsItem.render == "select"){
-            return <Col key = {columnsItem.key} span={3}>
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 <Select onChange={this.selectFieldVal.bind(this, index, columnsItem.dataIndex)} value={item[columnsItem.dataIndex]} style={{ width: 80 }}>
                   {columnsItem.selectList.map((selectListItem, selectListIndex )=>{
                       return <Option key = {selectListIndex} value={selectListItem.val}>{selectListItem.name}</Option>
@@ -132,23 +134,23 @@ class SortAbleList extends React.Component {
                 </Select>
             </Col>;
           }else if(columnsItem.render == "link"){
-            return <Col key = {columnsItem.key} span={3}>
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 <a onClick = {columnsItem.Event.bind(this, item, index)} >编辑</a>
             </Col>;
           }else{
-            return <Col key = {columnsItem.key} span={3}>
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 {item[columnsItem.dataIndex]}
             </Col>;
           };
        });
        return <li key = {index} >
               <Row>
-                {this.props.sortAble ? <Col span={3}>
+                {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>
                    <Button style={{ marginRight: 6 }} type="primary" onClick = {this.shiftUpField.bind(this, index)} disabled = {(index == 0) ? true : false} ><Icon type="arrow-up" /></Button>
                    <Button type="primary" onClick = {this.shiftDownField.bind(this, index)} disabled = {(index == fieldLength) ? true : false} ><Icon type="arrow-down" /></Button>
                 </Col>:''}
                 {nodeItemList}
-                {this.props.addAndDelAble ? <Col span={3}>
+                {this.props.addAndDelAble ? <Col span={this.props.addAndDelAbleSpan}>
                    <Button style={{ marginRight: 6 }} type="primary" onClick = {this.addField.bind(this, index)} ><Icon type="plus" /></Button>
                    <Button  type="primary"  onClick = {this.reduceField.bind(this, index)} disabled = {(fieldLength == 0) ? true : false} ><Icon type="minus" /></Button>
                 </Col>: ''}
@@ -159,11 +161,11 @@ class SortAbleList extends React.Component {
     return (
       <div className = "ck-sortable-list">
         <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
-          {this.props.sortAble ? <Col span={3}>上移/下移</Col> : ''}
+          {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>上移/下移</Col> : ''}
           {this.props.columns.map((item) => {
-            return <Col key ={item.key} span={3}>{item.title}</Col>
+            return <Col key ={item.key} span={item.span || 3}>{item.title}</Col>
           })}
-          {this.props.addAndDelAble ? <Col span={3}>添加/删除</Col> : ""}
+          {this.props.addAndDelAble ? <Col span={this.props.addAndDelAbleSpan}>添加/删除</Col> : ""}
         </Row>
         <ul>
         {nodeFieldList} 

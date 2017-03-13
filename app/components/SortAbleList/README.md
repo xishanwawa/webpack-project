@@ -17,7 +17,11 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 
 -- 是否可排序 sortAble = {true/false} 非必须 默认true
 
+-- 是否可排序区域宽度 sortAbleSpan  ={num||3}
+
 -- 是否支持增删  addAndDelAble = {true/false} 非必须 默认true
+
+-- 是否支持增删区域宽度 addAndDelAbleSpan  ={num||3}
 
 -- 是否可编辑    editAble = {true/false} 非必须 默认true
 
@@ -37,6 +41,8 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 -- selectList： 当render为select的时候：需要定义下拉都有哪些项； 如果用了select，为必须
 
 -- Event：当需要用link操作传出事件时定义的方法，参数为当前操作的记录和当前的index； 外传事件， 为必须
+
+-- span: 宽度，1-24;(和table的antd 的布局一样)
 
 
 ## data数据信息格式
