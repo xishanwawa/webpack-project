@@ -2,8 +2,10 @@
  * Created by yangtm
  */
 import React, {Component, PropTypes} from 'react'
+import Immutable from 'immutable'
 import classNames from 'classnames';
-import Sortable from 'sortablejs';
+// import Sortable from 'sortablejs';
+import Dragula from 'react-dragula';
 
 
 import './index.less'
@@ -24,34 +26,44 @@ class MoveList extends React.Component {
 
   componentDidMount() {
     let that = this;
-    let el = document.getElementById('items');
+    // let el = document.getElementById('items');
 
-    //获取初始数据
-    let sortable = new Sortable(el, {
-       onEnd: function (evt) {
-            let list = that.state.list;
-            let newItem = list.splice(evt.oldIndex, 1);
-            list.splice(evt.newIndex, 0, newItem[0]);
-            //提交数据
-            console.log(evt.oldIndex +"and"+ evt.newIndex);
-            console.log(that.state.list);
+    // //获取初始数据
+    // let sortable = new Sortable(el, {
+    //    onEnd: function (evt) {
+    //         let list = Immutable.fromJS(that.state.list).toJS();
+    //         let newItem = list.slice(evt.oldIndex, evt.oldIndex+1);
+    //         list.splice(evt.oldIndex, 1);
+    //         debugger
+    //         list.splice(evt.newIndex, 0,  newItem[0]);
 
-            // evt.oldIndex;  // element's old index within parent 
-            // evt.newIndex;  // element's new index within parent 
-       }
-    })
+    //         //提交数据
+    //         console.log(evt.oldIndex +"and"+ evt.newIndex);
+    //         console.log(that.state.list);
+
+    //         // evt.oldIndex;  // element's old index within parent 
+    //         // evt.newIndex;  // element's new index within parent 
+    //    }
+    // })
   }
-
+  
+  dragulaDecorator = (componentBackingInstance) => {
+    if (componentBackingInstance) {
+      let options = { };
+      Dragula([componentBackingInstance], options);
+    }
+  }
+  
   render() {
     let nodelist = this.state.list.map((item, index) => {
-      return <li key = {index}>{item}</li>
+      return <div className = "divli" key = {index}>{item}</div>
     })
 
     return (
       <div className = "move-list">
-        <ul id="items">
+        <div className = "divul" ref={this.dragulaDecorator}>
           {nodelist}
-        </ul>
+        </div>
       </div>
     )
           

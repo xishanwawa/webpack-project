@@ -235,6 +235,7 @@ class FieldSettings extends React.Component {
         <div style={{ padding:'20px' }}>
           <div style={{ fontSize: '16px', margin:'20px 0', color: '#108ee9' }} >demo：</div>
           <SortAbleList 
+            sortAbleId = 'sortAbleId1'
             columns = {this.state.columns} 
             data = {this.state.panes} 
             onChange = {this.changePanes.bind(this)} 
@@ -257,12 +258,14 @@ class FieldSettings extends React.Component {
           </Tabs>
           <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >普通：</div>
           <SortAbleList 
+            sortAbleId = 'sortAbleId2'
             columns = {this.state.tabColumns} 
             data = {this.state.tabData} 
             onChange = {this.changeTabData.bind(this)} 
           />
           <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不可编辑：</div>
           <SortAbleList 
+            sortAbleId = 'sortAbleId3'
             columns = {this.state.tabColumns} 
             data = {this.state.tabData} 
             editAble = {false}
@@ -270,6 +273,7 @@ class FieldSettings extends React.Component {
           />
           <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不可排序：</div>
           <SortAbleList 
+            sortAbleId = 'sortAbleId4'
             columns = {this.state.tabColumns} 
             data = {this.state.tabData} 
             sortAble = {false}
@@ -277,6 +281,7 @@ class FieldSettings extends React.Component {
           />
           <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不可增删：</div>
           <SortAbleList 
+            sortAbleId = 'sortAbleId5'
             columns = {this.state.tabColumns} 
             data = {this.state.tabData} 
             addAndDelAble = {false}
@@ -284,6 +289,7 @@ class FieldSettings extends React.Component {
           />
           <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不显示列头：</div>
           <SortAbleList 
+            sortAbleId = 'sortAbleId6'
             columns = {this.state.tabColumns} 
             data = {this.state.tabData} 
             showTitle = {false}

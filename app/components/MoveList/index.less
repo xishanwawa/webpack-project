@@ -12,16 +12,25 @@
 
 .move-list {
     margin-top: 30px;
-    ul {
-        li {
-            width: 200px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            cursor: move;
-            .dargDisabled
-        }
-        .sortable-chosen {
-            background-color: #f5f5f5;
-        }
+    .divul {
+        .dargDisabled
     }
+
+    .divli {
+        width: 200px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        cursor: move; 
+    }
+}
+
+.gu-mirror {
+  position: absolute;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s ease-in-out;
+}
+
+.gu-transit {
+    color: #e74c3c;
 }

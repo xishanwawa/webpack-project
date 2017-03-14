@@ -31,7 +31,6 @@ class SortAbleList extends React.Component {
   }
 
   showModal = (index) => {
-    debugger
     let fields = Immutable.fromJS(this.props.list).toJS();
     let setType = fields[index].typeName;
     this.setState({
@@ -160,7 +159,7 @@ class SortAbleList extends React.Component {
             </Col>;
           };
        });
-       return <li key = {index} onMouseDown = {this.MouseDown.bind(this, index)} >
+       return <li key = {index} >
               <Row>
                 {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>
                    <Button style={{ marginRight: 6 }} type="primary" onClick = {this.shiftUpField.bind(this, index)} disabled = {(index == 0) ? true : false} ><Icon type="arrow-up" /></Button>
