@@ -1,0 +1,36 @@
+.dargDisabled {
+    -moz-user-select: none;
+    /*火狐*/
+    -webkit-user-select: none;
+    /*webkit浏览器*/
+    -ms-user-select: none;
+    /*IE10*/
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    user-select: none;
+}
+
+.move-list {
+    margin-top: 30px;
+    .divul {
+        .dargDisabled
+    }
+
+    .divli {
+        width: 200px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        cursor: move; 
+    }
+}
+
+.gu-mirror {
+  position: absolute;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s ease-in-out;
+}
+
+.gu-transit {
+    color: #e74c3c;
+}
