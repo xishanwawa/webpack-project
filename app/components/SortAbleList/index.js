@@ -1,5 +1,5 @@
 /**
- * Created by yangtm
+ * Created by yangtm on 2017-03-10
  */
 import React, {Component, PropTypes} from 'react'
 import Immutable from 'immutable'
@@ -16,6 +16,10 @@ class SortAbleList extends React.Component {
     addAndDelAble:true,
     showTitle: true,
     editAble:true,
+    plusPlace: 'next',
+    plusType: 'copy',
+    hasMinus: 'hasMinus',
+    hasPlus: 'hasPlus',
     onChange: function (data) {
       console.log(data);
     }
@@ -25,32 +29,7 @@ class SortAbleList extends React.Component {
     super();
   }
 
-  state = {
-    visible: false,
-    setType: 'text'
-  }
-
-  showModal = (index) => {
-    let fields = Immutable.fromJS(this.props.list).toJS();
-    let setType = fields[index].typeName;
-    this.setState({
-      visible: true,
-      setType
-    });
-  }
-  handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  }
-  
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  }
+  state = {}
 
   shiftUpField(index) {
      let fields = Immutable.fromJS(this.props.data).toJS();
@@ -68,16 +47,23 @@ class SortAbleList extends React.Component {
      this.props.onChange(fields);
   }
 
-  changeFieldVal(index, dataIndex,  e) {
+  changeFieldVal(index, dataIndex, e) {
     let fields = Immutable.fromJS(this.props.data).toJS();
     let newName = e.target.value;
     fields[index][dataIndex] = newName;
     this.props.onChange(fields);
   }
 
+  changeNumberFieldVal(index, dataIndex, value) {
+    let fields = Immutable.fromJS(this.props.data).toJS();
+    let newName = value;
+    fields[index][dataIndex] = newName;
+    this.props.onChange(fields);
+  }
+
   switchFieldVal(index, dataIndex, checked) {
     let fields = Immutable.fromJS(this.props.data).toJS();
-    fields[index][dataIndex] = checked;
+    fields[index][dataIndex] = Number(checked);
     this.props.onChange(fields);
   }
   
@@ -88,11 +74,22 @@ class SortAbleList extends React.Component {
   }
 
   addField(index) {
-     let fields = Immutable.fromJS(this.props.data).toJS();
-     let addObj = Immutable.fromJS(fields[index]).toJS();
-     addObj.key++
-     fields.splice(index+1, 0, addObj);
-     this.props.onChange(fields);
+    let fields = Immutable.fromJS(this.props.data).toJS();
+    let addObj = Immutable.fromJS(fields[index]).toJS();
+
+    delete addObj[this.props.hasMinus];
+
+    if(this.props.plusType =='costom'){
+      addObj = this.props.plusTypeData;
+    };
+    
+    if(this.props.plusPlace =='next'){
+      fields.splice(index+1, 0, addObj);
+    }else{
+      fields.push(addObj);
+    };
+
+    this.props.onChange(fields);
   }
 
   reduceField(index) {
@@ -100,24 +97,6 @@ class SortAbleList extends React.Component {
      fields.splice(index, 1);
      this.props.onChange(fields);
   }
-  
-
-  //支持可拖拽排序
-  // MouseDown(index, event){
-  //   console.log(index);
-  //   let Target = event.DOMEventTarget;
-  //   debugger
-
-	// 	if(!event){
-	// 		event = window.event;
-	// 	}
-
-	// 	let e = event;
-	// 	let pageX = e.pageX;
-	// 	let pageY = e.pageY;
-   
-  //   console.log(pageX+':'+ pageY);
-  // }
 
   render() {
     let fieldLength = this.props.data.length - 1;
@@ -130,15 +109,19 @@ class SortAbleList extends React.Component {
           };
           if(columnsItem.render == "input"){
             return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
-                <Input onChange={this.changeFieldVal.bind(this, index, columnsItem.dataIndex)} value = {item[columnsItem.dataIndex]} style={{ width: 100 }} />
+                <Input onChange={this.changeFieldVal.bind(this, index, columnsItem.dataIndex)} value = {item[columnsItem.dataIndex]} title = {item[columnsItem.dataIndex]} placeholder="不能为空.." style={{ width: 100 }} />
+            </Col>;
+          }else if(columnsItem.render == "inputNumber"){
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
+                <InputNumber min={columnsItem.min || null} max={columnsItem.max || null} value={item[columnsItem.dataIndex]} onChange={this.changeNumberFieldVal.bind(this, index, columnsItem.dataIndex)} />
             </Col>;
           }else if(columnsItem.render == "boolean"){
             return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 <Switch 
-                  checked={item[columnsItem.dataIndex]}
+                  checked={(Number(item[columnsItem.dataIndex]) == 1) ? true : false}
                   onChange={this.switchFieldVal.bind(this, index, columnsItem.dataIndex)}
-                  checkedChildren={'显示'} 
-                  unCheckedChildren={'隐藏'} 
+                  checkedChildren={columnsItem.checkedText || '是'} 
+                  unCheckedChildren={columnsItem.unCheckedText || '否'} 
                 />
             </Col>;
           }else if(columnsItem.render == "select"){
@@ -159,7 +142,7 @@ class SortAbleList extends React.Component {
             </Col>;
           };
        });
-       return <li key = {index} >
+       return <li key = {index} style={{ margin:"10px 0"}}>
               <Row>
                 {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>
                    <Button style={{ marginRight: 6 }} type="primary" onClick = {this.shiftUpField.bind(this, index)} disabled = {(index == 0) ? true : false} ><Icon type="arrow-up" /></Button>
@@ -167,8 +150,10 @@ class SortAbleList extends React.Component {
                 </Col>:''}
                 {nodeItemList}
                 {this.props.addAndDelAble ? <Col span={this.props.addAndDelAbleSpan}>
-                   <Button style={{ marginRight: 6 }} type="primary" onClick = {this.addField.bind(this, index)} ><Icon type="plus" /></Button>
-                   <Button  type="primary"  onClick = {this.reduceField.bind(this, index)} disabled = {(fieldLength == 0) ? true : false} ><Icon type="minus" /></Button>
+                   {item[this.props.hasPlus] ? null :
+                     <Button style={{ marginRight: 6 }} type="primary" onClick = {this.addField.bind(this, index)} ><Icon type="plus" /></Button>}
+                   {item[this.props.hasMinus] ? null :
+                   <Button  type="primary"  onClick = {this.reduceField.bind(this, index)} disabled = {(fieldLength == 0) ? true : false} ><Icon type="minus" /></Button>}
                 </Col>: ''}
               </Row>
           </li>
