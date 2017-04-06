@@ -65,7 +65,7 @@ module.exports = {
 			mockData: path.join(__dirname, 'app/mockData'),
         },
     },
-	devtool: 'source-map',
+	devtool: 'source-map', //'eval', //'source-map',
 	plugins: [
 		new webpack.DllReferencePlugin({
 			context: __dirname,

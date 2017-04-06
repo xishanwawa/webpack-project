@@ -24,7 +24,7 @@ class ListDemo extends React.Component{
             method: 'post',
             type: 'json',
         });
-
+        debugger
         this.setState({
             list: data.list
         })
