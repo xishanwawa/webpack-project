@@ -1,29 +1,25 @@
 .ck-controls-main {
-    .ck-controls {
-        width:120px;
-        position: absolute;
-        left: 0;
-        top:0;
-        height: 100%;
-        background-color: #f5f5f5;
+    .ck-formlist-main {
         span {
-            display: block;
+            display: inline-block;
             width: 100px;
             height: 40px;
-            margin-bottom: 10px;
+            margin: 10px;
             text-align: center;
             line-height: 40px;
-            background-color: #fff;
-            cursor: pointer;
+            background-color: #f5f5f5;
+            cursor: move;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            border: 1px solid #f5f5f5;
+            &:hover{
+                border: 1px solid #8FCDF9;
+            }
         }
     }
-    .controls-box {
+    .ele-move{
         position: absolute;
-        left:120px;
-        top:0;
-        li {
-            margin: 10px 0;
-            cursor: move;
-        }
+        cursor: move;
     }
 }

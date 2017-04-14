@@ -7,13 +7,7 @@ import { Button, Input, Select, Radio, Checkbox, InputNumber, DatePicker, Row, C
 const { MonthPicker, RangePicker } = DatePicker;
 const Option = Select.Option;
 
-import FormLibrary from './formLibrary'
-import FormList from './formList'
-import FormSetting from './formSetting'
-
-import './index.less'
-
-class Controls extends React.Component {
+class FormSetting extends React.Component {
   static defaultProps = {
     handle: function (date) {
       console.log(date);
@@ -23,22 +17,19 @@ class Controls extends React.Component {
   constructor() {
     super();
     this.state = {
+        addControlsList:[]
     }
   }
 
   componentDidMount() {
   }
 
-
   render() {
-
     return (
-      <div className = "ck-controls-main">
-        <FormLibrary />
+      <div className = "ck-formsetting-main">
       </div>
     )
-  
   }
 }
 
-export default Controls
+export default FormSetting
