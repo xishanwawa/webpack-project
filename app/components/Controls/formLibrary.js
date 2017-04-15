@@ -6,6 +6,12 @@ import classNames from 'classnames';
 import { Button, Input, Select, Radio, Checkbox, InputNumber, DatePicker, Row, Col } from 'antd';
 const { MonthPicker, RangePicker } = DatePicker;
 const Option = Select.Option;
+
+import { 
+  InputMoveEle,
+  TextareMoveEle,
+  NumberMoveEle } from 'components/Controls/formMoveLibrary';
+
 import './index.less'
 
 class FormLibrary extends React.Component {
@@ -77,8 +83,23 @@ class FormLibrary extends React.Component {
               >{item.Label}</span>
     })
     
-    let moveObj = this.state.moveStateObj
-    let eleMove = <div className = "ele-move" style = {{position:'fixed', left: this.state.offMoveLeft, top: this.state.offMoveTop}}>{moveObj.Label}</div>
+    let moveObj = this.state.moveStateObj;
+    let eleMoveCon = '无相关组件示例！';
+
+    if(moveObj.Type == "text"){
+      eleMoveCon = <InputMoveEle />
+    }else if(moveObj.Type == 'textarea' ){
+      eleMoveCon = <TextareMoveEle />
+    }else if(moveObj.Type == 'number' ){
+      eleMoveCon = <NumberMoveEle />
+    };
+
+    let eleMove = <div className = "ele-move" style = {{ left: this.state.offMoveLeft, top: this.state.offMoveTop}}>
+      <Row>
+        <Col span={8} style = {{textAlign:'right', lineHeight:'24px'}}>{moveObj.Label+"："}</Col>
+        <Col span={16}>{eleMoveCon}</Col>
+      </Row>
+    </div>
     return (
       <div>
         <div className = "ck-formlist-main text-un-checked">
