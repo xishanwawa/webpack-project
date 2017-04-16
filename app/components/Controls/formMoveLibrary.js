@@ -23,7 +23,7 @@ class InputMoveEle extends React.Component {
   render() {
     return (
       <div>
-        <Input placeholder="请输入。。" />
+        <Input placeholder="" />
       </div>
     )
   }

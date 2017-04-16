@@ -24,7 +24,7 @@ class FormLibrary extends React.Component {
   constructor() {
     super();
     this.state = {
-        formList:[
+        formLibraryList:[
           {
             Label: "单行文本",
             Type: 'text'
@@ -51,13 +51,25 @@ class FormLibrary extends React.Component {
   }
   
   winOnMouseUp(){
+    let moveStateObj = this.state.moveStateObj;
+    this.props.dragActive(false);
+    this.props.dragEnd(moveStateObj);
+
     this.setState({ eleMoveVisible:false });
+
     document.onmousemove = null;
     document.onmouseup = null;
   }
   
   winOnMouseMove(e){
-    this.setState({ offMoveLeft: e.pageX, offMoveTop: e.pageY });
+    //console.log(e.pageX +" "+ e.pageY)
+    if(e.pageX >= 230 && e.pageY >= 168){
+        this.props.dragActive(true, e.pageY)
+    }else{
+        this.props.dragActive(false)
+    };
+    this.setState({ offMoveLeft: e.pageX-10, offMoveTop: e.pageY-10 });
+    return false;
   };
 
   renderMoveElement(item, index, e) {
@@ -71,13 +83,14 @@ class FormLibrary extends React.Component {
        Type: item.Type
     };
 
-    this.setState({ eleMoveVisible:true, moveStateObj, offMoveLeft: e.pageX, offMoveTop: e.pageY });
+    this.setState({ eleMoveVisible:true, moveStateObj, offMoveLeft: e.pageX-10, offMoveTop: e.pageY-10 });
     return false;  //火狐的bug，要阻止默认事件
   }
 
   render() {
-    let elementList = this.state.formList.map((item, index)=>{
+    let elementList = this.state.formLibraryList.map((item, index)=>{
        return <span 
+                className = "text-unchecked"
                 onMouseDown = {this.renderMoveElement.bind(this, item, index)} 
                 key = {item.Type}
               >{item.Label}</span>
@@ -94,15 +107,15 @@ class FormLibrary extends React.Component {
       eleMoveCon = <NumberMoveEle />
     };
 
-    let eleMove = <div className = "ele-move" style = {{ left: this.state.offMoveLeft, top: this.state.offMoveTop}}>
+    let eleMove = <div className = "ele-move text-unchecked" style = {{ left: this.state.offMoveLeft, top: this.state.offMoveTop}}>
       <Row>
         <Col span={8} style = {{textAlign:'right', lineHeight:'24px'}}>{moveObj.Label+"："}</Col>
         <Col span={16}>{eleMoveCon}</Col>
       </Row>
     </div>
     return (
-      <div>
-        <div className = "ck-formlist-main text-un-checked">
+      <div className = "ck-formLibrary-main">
+        <div className = "ck-fromLibrary-con text-unchecked">
           {elementList}
         </div>
         {this.state.eleMoveVisible ? eleMove: null}

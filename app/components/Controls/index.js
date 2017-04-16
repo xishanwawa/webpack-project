@@ -23,18 +23,49 @@ class Controls extends React.Component {
   constructor() {
     super();
     this.state = {
+      formData: [
+
+      ],
+      moveInActive: false,
+      moveInIndex: 0
     }
   }
 
   componentDidMount() {
   }
+  
+  dragActive(bool, pageY) {
+    if(this.state.moveInActive != bool){
+      this.setState({moveInActive: bool})
+    };
 
+    if(bool) {
+        let index = Math.floor((pageY - 168)/62);
+
+        //console.log(bool);
+        this.setState({moveInIndex: index});
+    }
+  }
+  
+  dragEnd(moveStateObj) {
+    let formData = this.state.formData;
+    formData.splice(this.state.moveInIndex, 0, moveStateObj);
+    this.setState({ formData })
+  }
 
   render() {
 
     return (
       <div className = "ck-controls-main">
-        <FormLibrary />
+        <FormLibrary 
+          dragActive = {this.dragActive.bind(this)}
+          dragEnd = {this.dragEnd.bind(this)}
+        />
+        <FormList 
+          moveInActive = {this.state.moveInActive} 
+          data = {this.state.formData} 
+          moveInIndex = {this.state.moveInIndex}
+        />
       </div>
     )
   
