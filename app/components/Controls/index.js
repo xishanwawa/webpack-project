@@ -34,22 +34,34 @@ class Controls extends React.Component {
   componentDidMount() {
   }
   
+  //正在拖动中
   dragActive(bool, pageY) {
     if(this.state.moveInActive != bool){
       this.setState({moveInActive: bool})
     };
 
     if(bool) {
+        //计算拖动在索引值
         let index = Math.floor((pageY - 168)/62);
-
-        //console.log(bool);
         this.setState({moveInIndex: index});
     }
   }
   
+  //拖动结束事件
   dragEnd(moveStateObj) {
     let formData = this.state.formData;
-    formData.splice(this.state.moveInIndex, 0, moveStateObj);
+    //把要添加的项放在计算索引位置
+
+    if(this.state.moveInActive){
+      formData.splice(this.state.moveInIndex, 0, moveStateObj);
+      this.setState({ formData })
+    };
+  }
+  
+  //移除表单项
+  removeItem(index) {
+    let formData = this.state.formData;
+    formData.splice(index, 1);
     this.setState({ formData })
   }
 
@@ -65,6 +77,7 @@ class Controls extends React.Component {
           moveInActive = {this.state.moveInActive} 
           data = {this.state.formData} 
           moveInIndex = {this.state.moveInIndex}
+          removeItem = {this.removeItem.bind(this)}
         />
       </div>
     )

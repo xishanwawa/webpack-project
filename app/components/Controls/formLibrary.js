@@ -16,14 +16,12 @@ import './index.less'
 
 class FormLibrary extends React.Component {
   static defaultProps = {
-    handle: function (date) {
-      console.log(date);
-    }
   }
 
   constructor() {
     super();
     this.state = {
+        //组件库
         formLibraryList:[
           {
             Label: "单行文本",
@@ -38,10 +36,12 @@ class FormLibrary extends React.Component {
             Type: 'number'
           }
         ],
+        //当前移动组件对象
         moveStateObj:{
           Label: "单行文本",
           Type: 'text'
         },
+        //是否在拖动中
         eleMoveVisible: false
     }
   }
@@ -52,8 +52,8 @@ class FormLibrary extends React.Component {
   
   winOnMouseUp(){
     let moveStateObj = this.state.moveStateObj;
-    this.props.dragActive(false);
     this.props.dragEnd(moveStateObj);
+    this.props.dragActive(false);
 
     this.setState({ eleMoveVisible:false });
 
@@ -69,8 +69,7 @@ class FormLibrary extends React.Component {
         this.props.dragActive(false)
     };
     this.setState({ offMoveLeft: e.pageX-10, offMoveTop: e.pageY-10 });
-    return false;
-  };
+  }
 
   renderMoveElement(item, index, e) {
     //console.log(e)
@@ -88,6 +87,7 @@ class FormLibrary extends React.Component {
   }
 
   render() {
+    //渲染控件列表
     let elementList = this.state.formLibraryList.map((item, index)=>{
        return <span 
                 className = "text-unchecked"
@@ -96,6 +96,8 @@ class FormLibrary extends React.Component {
               >{item.Label}</span>
     })
     
+
+    //根据选择组件类型渲染移动元素
     let moveObj = this.state.moveStateObj;
     let eleMoveCon = '无相关组件示例！';
 
@@ -106,13 +108,15 @@ class FormLibrary extends React.Component {
     }else if(moveObj.Type == 'number' ){
       eleMoveCon = <NumberMoveEle />
     };
-
+    
+    //渲染移动元素
     let eleMove = <div className = "ele-move text-unchecked" style = {{ left: this.state.offMoveLeft, top: this.state.offMoveTop}}>
       <Row>
         <Col span={8} style = {{textAlign:'right', lineHeight:'24px'}}>{moveObj.Label+"："}</Col>
         <Col span={16}>{eleMoveCon}</Col>
       </Row>
     </div>
+
     return (
       <div className = "ck-formLibrary-main">
         <div className = "ck-fromLibrary-con text-unchecked">
