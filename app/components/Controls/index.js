@@ -48,12 +48,15 @@ class Controls extends React.Component {
   }
   
   //拖动结束事件
-  dragEnd(moveStateObj) {
+  dragEnd(moveStateObj, isList) {
     let formData = this.state.formData;
     //把要添加的项放在计算索引位置
 
-    if(this.state.moveInActive){
+    if(this.state.moveInActive && !isList){
       formData.splice(this.state.moveInIndex, 0, moveStateObj);
+      this.setState({ formData })
+    }else{
+      formData.splice(this.state.moveInIndex, 1, moveStateObj);
       this.setState({ formData })
     };
   }
@@ -77,6 +80,8 @@ class Controls extends React.Component {
           moveInActive = {this.state.moveInActive} 
           data = {this.state.formData} 
           moveInIndex = {this.state.moveInIndex}
+          dragActive = {this.dragActive.bind(this)}
+          dragEnd = {this.dragEnd.bind(this)}
           removeItem = {this.removeItem.bind(this)}
         />
       </div>

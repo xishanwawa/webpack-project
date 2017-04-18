@@ -23,7 +23,8 @@ class FormList extends React.Component {
         Label: "单行文本",
         Type: 'text'
       },
-      eleMoveVisible: false
+      eleMoveVisible: false,
+      insideMove: false
     }
   }
 
@@ -35,7 +36,11 @@ class FormList extends React.Component {
   }
 
   winOnMouseUp(){
-    this.setState({ eleMoveVisible:false });
+    let moveStateObj = this.state.moveStateObj;
+    this.props.dragEnd(moveStateObj, true);
+    this.props.dragActive(false);
+
+    this.setState({ eleMoveVisible:false, insideMove: false });
     document.onmousemove = null;
     document.onmouseup = null;
   }
@@ -58,25 +63,35 @@ class FormList extends React.Component {
        Type: item.Type
     };
 
-    this.setState({ eleMoveVisible:true, moveStateObj, offMoveLeft: e.pageX-10, offMoveTop: e.pageY-10 });
+    this.setState({ eleMoveVisible:true, insideMove: true, moveStateObj, offMoveLeft: e.pageX-10, offMoveTop: e.pageY-10 });
     return false;  //火狐的bug，要阻止默认事件
   }
 
   render() {
     let formData = Immutable.fromJS(this.props.data).toJS();
+    if(this.state.insideMove){
+      formData.splice(this.props.moveInIndex, 1, {})
+    }
 
     //拖动到区域内，添加临时对象渲染临时占位元素
-    if(this.props.moveInActive){
+    if(this.props.moveInActive && !this.state.insideMove){
       formData.splice(this.props.moveInIndex, 0, {})
     };
     
     //渲染已选组件列表
     let formDataEle = formData.map((item, index)=>{
-        if(this.props.moveInIndex == index && this.props.moveInActive){
+        if(this.props.moveInIndex == index && this.props.moveInActive && !this.state.insideMove){
           return <div className = "drag-active" key = {index}>
             {item.Label}
           </div>
         }
+
+        if(this.props.moveInIndex == index && this.state.insideMove){
+          return <div className = "drag-active" key = {index}>
+            {item.Label}
+          </div>
+        }
+
         return <div 
         className = "drag-item" 
         onMouseDown = {this.renderMoveElement.bind(this, item, index)} 
