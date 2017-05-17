@@ -94,8 +94,8 @@ class FormList extends React.Component {
 
         return <div 
         className = "drag-item" 
-        onMouseDown = {this.renderMoveElement.bind(this, item, index)} 
         key = {index}>
+          <Icon onMouseDown = {this.renderMoveElement.bind(this, item, index)}  className = "handle-drag-item"  type="ellipsis" />
           <Icon 
             onClick = {this.removeItem.bind(this, index)} 
             className = "del-drag-item" 

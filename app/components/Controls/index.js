@@ -9,7 +9,6 @@ const Option = Select.Option;
 
 import FormLibrary from './formLibrary'
 import FormList from './formList'
-import FormSetting from './formSetting'
 
 import './index.less'
 

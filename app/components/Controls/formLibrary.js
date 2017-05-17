@@ -10,7 +10,7 @@ const Option = Select.Option;
 import { 
   InputMoveEle,
   TextareMoveEle,
-  NumberMoveEle } from 'components/Controls/formMoveLibrary';
+  NumberMoveEle } from 'components/Controls/MoveFieldStyle';
 
 import './index.less'
 

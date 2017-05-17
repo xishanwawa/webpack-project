@@ -7,7 +7,7 @@ import { Button, Input, Select, Radio, Checkbox, InputNumber, DatePicker } from 
 const { MonthPicker, RangePicker } = DatePicker;
 const Option = Select.Option;
 
-class InputMoveEle extends React.Component {
+class MoveFieldStyle extends React.Component {
   static defaultProps = {
   }
 
