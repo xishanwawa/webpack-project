@@ -41,6 +41,7 @@ class SiderMenu extends React.Component {
               <Menu.Item key="3"><Link to="/date-page"><Icon type="file" />日历</Link></Menu.Item>
               <Menu.Item key="4"><Link to="/control-library"><Icon type="file" />控件库</Link></Menu.Item>
               <Menu.Item key="5"><Link to="/field-settings"><Icon type="file" />字段设置</Link></Menu.Item>
+              <Menu.Item key="6"><Link to="/sortable"><Icon type="file" />拖动排序</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </div>

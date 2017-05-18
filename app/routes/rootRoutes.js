@@ -61,6 +61,15 @@ const routeConfig = {
         }, 'FieldSettings')
       }
     },
+    { 
+      path: 'sortable', 
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('containers/Sortable'))
+        }, 'Sortable')
+      }
+    },
+    
     // { 
     //   path: 'inbox', 
     //   component: IndexPage 

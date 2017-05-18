@@ -4,8 +4,6 @@
 import React, {Component, PropTypes} from 'react'
 import Immutable from 'immutable'
 import classNames from 'classnames';
-// import Sortable from 'sortablejs';
-import Dragula from 'react-dragula';
 
 
 import './index.less'
@@ -45,13 +43,6 @@ class MoveList extends React.Component {
     //         // evt.newIndex;  // element's new index within parent 
     //    }
     // })
-  }
-  
-  dragulaDecorator = (componentBackingInstance) => {
-    if (componentBackingInstance) {
-      let options = { };
-      Dragula([componentBackingInstance], options);
-    }
   }
   
   render() {

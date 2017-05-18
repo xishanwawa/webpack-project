@@ -7,7 +7,7 @@ import { Button, Input, Select, Radio, Checkbox, InputNumber, DatePicker, Row, C
 const { MonthPicker, RangePicker } = DatePicker;
 const Option = Select.Option;
 
-import FormLibrary from './formLibrary'
+import FormLibrary from './fieldLibrary'
 import FormList from './formList'
 
 import './index.less'
