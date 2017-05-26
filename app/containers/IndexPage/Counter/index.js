@@ -9,8 +9,17 @@ export default class Counter extends React.Component {
     componentDidMount() {
       //初始获取数据
     }
+    
+    //判断是否有状态改变来执行render方法
+    shouldComponentUpdate(nextProps, nextState) {
+      if (this.props.value !== nextProps.value) {
+        return true;
+      }
+      return false;
+    }
 
     render() {
+      //debugger
     	let value = this.props.value;
         return (
         	<div>

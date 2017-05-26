@@ -14,6 +14,11 @@ const vendors = [
     'isomorphic-fetch',
     'keymirror',
     'reqwest',
+    'react-draggable',
+    'react-pdf',
+    'react-sortable',
+    'draft-js',
+    'react-sortable-hoc',
     'mockjs',
 ];
 
