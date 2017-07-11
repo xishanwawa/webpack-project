@@ -14,7 +14,7 @@ class SortAbleList extends React.Component {
     addAndDelAbleSpan:3,
     sortAble: true,
     addAndDelAble:true,
-    showTitle: true,
+    showHeader: true,
     editAble:true,
     plusPlace: 'next',
     plusType: 'copy',
@@ -102,6 +102,10 @@ class SortAbleList extends React.Component {
     let fieldLength = this.props.data.length - 1;
     let nodeFieldList = this.props.data.map((item, index) => {
        let nodeItemList =  this.props.columns.map((columnsItem, columnsIndex) => {
+          if (typeof columnsItem.render == 'function'){
+             return columnsItem.render(item, index)
+          };
+
           if(!this.props.editAble){
             return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 {item[columnsItem.dataIndex]}
@@ -136,6 +140,10 @@ class SortAbleList extends React.Component {
             return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 <a onClick = {columnsItem.Event.bind(this, item, index)} >编辑</a>
             </Col>;
+          }else if(columnsItem.render == "link"){
+            return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
+                <a onClick = {columnsItem.Event.bind(this, item, index)} >编辑</a>
+            </Col>;
           }else{
             return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 {item[columnsItem.dataIndex]}
@@ -158,7 +166,7 @@ class SortAbleList extends React.Component {
               </Row>
           </li>
     })
-    let nodeColumns = this.props.showTitle ? <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
+    let nodeColumns = this.props.showHeader ? <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
           {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>上移/下移</Col> : ''}
           {this.props.columns.map((item) => {
             return <Col key ={item.key} span={item.span || 3}>{item.title}</Col>
