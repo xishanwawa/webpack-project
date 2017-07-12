@@ -70,9 +70,8 @@ class FieldSettings extends React.Component {
           title: 'link control', 
           dataIndex: 'editSleck', 
           key: 'editSleck',
-          render: 'link',
-          Event: (item, index) => {
-            this.showSetTypeModal(item, index);
+          render: (record, text, index)=>{
+              return <span>{"link"}</span>
           }
         },
         { 
@@ -89,7 +88,7 @@ class FieldSettings extends React.Component {
         }
       ];
 
-      const panes = [
+      const data = [
         { 
           name: 'item 1',
           tableType:'text', 
@@ -107,49 +106,9 @@ class FieldSettings extends React.Component {
       ];
 
       this.state = {
-        activeKey: 'table1',
-        panes,
+        data,
         columns,
-        visible: false,
-        setType: 'text',
-        tabColumns: [
-          { 
-            title: 'tab 名称', 
-            dataIndex: 'name', 
-            key: 'name',
-            render: 'input',
-          },
-          { 
-            title: '对应查看表', 
-            dataIndex: 'tableType', 
-            key: 'tableType',
-            render: 'select',
-            selectList:[
-              {
-                name:'表一',
-                val:'table1'
-              },
-              {
-                name:'表二',
-                val:'table2'
-              }
-            ]
-          }
-        ],
-        tabData:[
-          { 
-            name: '页签不会太长的',
-            tableType:'table1', 
-            key: 1
-          },
-          { 
-            name: '一般是2到7个字',
-            tableType:'table2', 
-            key: 2
-          },
-        ]
       }
-
     }
 
     componentDidMount() {
@@ -167,133 +126,23 @@ class FieldSettings extends React.Component {
         }
     }
     
-    //设置编辑类型
-    showSetTypeModal(item, index){
-      debugger
-      let fields = Immutable.fromJS(item).toJS();
-      let setType = item.tableType;
-      this.setState({
-        visible: true,
-        setType
-      });
-    }
-
-    handleOk = (e) => {
-      console.log(e);
-      this.setState({
-        visible: false,
-      });
-    }
-    handleCancel = (e) => {
-      console.log(e);
-      this.setState({
-        visible: false,
-      });
-    }
-
     //改变
-    changePanes(panes){
-      this.setState({ panes });
-    }
-    
-    //页签改变
-    changeTabData(tabData){
-      this.setState({ tabData });
+    changePanes(data){
+      this.setState({ data });
     }
 
     render() {
-
-    	let nodeSetType;
-      switch(this.state.setType)
-      {
-      case 'text':
-        nodeSetType = <SetInputFormat />;
-        break;
-      case 'textarea':
-        nodeSetType = <SetTextareaFormat />;
-        break;
-      case 'radio':
-        nodeSetType = <SetRadioFormat />;
-        break;
-      case 'checkbox':
-        nodeSetType = <SetCheckboxFormat />;
-        break;
-      case 'inputNumber':
-        nodeSetType = <SetInputNumberFormat />;
-        break;
-      case 'boolean':
-        nodeSetType = <SetSwitchFormat />;
-        break;
-      case 'date':
-        nodeSetType = <SetDateFormat />;
-        break;
-      default:
-        nodeSetType = <div>无该字段设置项，请联系管理员</div>;
-      }
-
       return (
         <div style={{ padding:'20px' }}>
           <div style={{ fontSize: '16px', margin:'20px 0', color: '#108ee9' }} >demo：</div>
-          <SortAbleList 
-            sortAbleId = 'sortAbleId1'
+          <SortAbleList
             columns = {this.state.columns} 
-            data = {this.state.panes} 
-            onChange = {this.changePanes.bind(this)} 
-          />
-          <Modal 
-            title= {this.state.setType+'设置'} 
-            visible={this.state.visible}
-            onOk={this.handleOk} 
-            onCancel={this.handleCancel}
-          >
-            {nodeSetType}
-          </Modal>
-          <div style={{ fontSize: '16px', margin:'20px 0', color: '#108ee9' }} >实例：页签自定义：</div>
-          <Tabs
-            onChange={this.onChange}
-            activeKey={this.state.activeKey}
-            type="card"
-          >
-            {this.state.tabData.map((tabData, index) => <TabPane tab={tabData.name} key={index}>{tabData.name}</TabPane>)}
-          </Tabs>
-          <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >普通：</div>
-          <SortAbleList 
-            sortAbleId = 'sortAbleId2'
-            columns = {this.state.tabColumns} 
-            data = {this.state.tabData} 
-            onChange = {this.changeTabData.bind(this)} 
-          />
-          <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不可编辑：</div>
-          <SortAbleList 
-            sortAbleId = 'sortAbleId3'
-            columns = {this.state.tabColumns} 
-            data = {this.state.tabData} 
+            data = {this.state.data} 
+            delAsk = {true}
             editAble = {false}
-            onChange = {this.changeTabData.bind(this)} 
-          />
-          <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不可排序：</div>
-          <SortAbleList 
-            sortAbleId = 'sortAbleId4'
-            columns = {this.state.tabColumns} 
-            data = {this.state.tabData} 
-            sortAble = {false}
-            onChange = {this.changeTabData.bind(this)} 
-          />
-          <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不可增删：</div>
-          <SortAbleList 
-            sortAbleId = 'sortAbleId5'
-            columns = {this.state.tabColumns} 
-            data = {this.state.tabData} 
-            addAndDelAble = {false}
-            onChange = {this.changeTabData.bind(this)} 
-          />
-          <div style={{ fontSize: '14px', margin:'20px 0 10px', color: '#108ee9' }} >不显示列头：</div>
-          <SortAbleList 
-            sortAbleId = 'sortAbleId6'
-            columns = {this.state.tabColumns} 
-            data = {this.state.tabData} 
-            showTitle = {false}
-            onChange = {this.changeTabData.bind(this)} 
+            upDownControlText = {'排序'}
+            addDelControlText = {'增删'}
+            onChange = {this.changePanes.bind(this)} 
           />
         </div>
       )
