@@ -16,6 +16,7 @@ class SortAbleList extends React.Component {
     addAndDelAbleSpan:3,
     sortAble: true,
     addAndDelAble:true,
+    editAble: true,
     showHeader: true,
     plusPlace: 'next',
     plusType: 'copy',
@@ -24,6 +25,8 @@ class SortAbleList extends React.Component {
     commonPlus: true,
     delAsk: false,
     allowLenZero: false,
+    checkedText: '是',
+    unCheckedText: '否',
     upDownControlText: '上移/下移',
     addDelControlText: '添加/删除',
     onChange: function (data) {
@@ -122,8 +125,29 @@ class SortAbleList extends React.Component {
 
   render() {
     let fieldLength = this.props.data.length - 1;
+    
+    //列表渲染
     let nodeFieldList = this.props.data.map((item, index) => {
        let nodeItemList =  this.props.columns.map((columnsItem, columnsIndex) => {
+
+          //无论render为什么类型，都是不可编辑状态
+          if(!this.props.editAble){
+            if (typeof columnsItem.render == 'function'){
+              return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
+                  {columnsItem.render(item, item[columnsItem.dataIndex],  index)}
+              </Col>;
+            }else if(columnsItem.render == 'boolean'){
+              return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
+                  {item[columnsItem.dataIndex] ?  this.props.checkedText : this.props.unCheckedText }
+              </Col>;
+            }else{
+              return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
+                {item[columnsItem.dataIndex]}
+              </Col>;
+            };
+          };
+          
+          //可编辑状态
           if (typeof columnsItem.render == 'function'){
              return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
                 {columnsItem.render(item, item[columnsItem.dataIndex],  index)}
@@ -142,8 +166,8 @@ class SortAbleList extends React.Component {
                   size= {this.props.size}
                   checked={(Number(item[columnsItem.dataIndex]) == 1) ? true : false}
                   onChange={this.switchFieldVal.bind(this, index, columnsItem.dataIndex)}
-                  checkedChildren={columnsItem.checkedText || '是'} 
-                  unCheckedChildren={columnsItem.unCheckedText || '否'} 
+                  checkedChildren={this.props.checkedText} 
+                  unCheckedChildren={this.props.unCheckedText} 
                 />
             </Col>;
           }else if(columnsItem.render == "select"){
@@ -160,6 +184,8 @@ class SortAbleList extends React.Component {
             </Col>;
           };
        });
+
+       //加上排序和添加删除操作
        return <li key = {index} style={{ margin:"10px 0"}}>
               <Row>
                 {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>
@@ -180,6 +206,8 @@ class SortAbleList extends React.Component {
               </Row>
           </li>
     })
+
+    //头部列名
     let nodeColumns = this.props.showHeader ? <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
           {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>{this.props.upDownControlText}</Col> : ''}
           {this.props.columns.map((item) => {

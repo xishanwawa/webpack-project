@@ -67,12 +67,10 @@ class FieldSettings extends React.Component {
           ]
         },
         { 
-          title: 'link control', 
-          dataIndex: 'editSleck', 
-          key: 'editSleck',
-          render: (record, text, index)=>{
-              return <span>{"link"}</span>
-          }
+          title: 'switch text', 
+          dataIndex: 'show', 
+          key: 'show',
+          render: 'boolean'
         },
         { 
           title: 'text control', 
@@ -81,25 +79,27 @@ class FieldSettings extends React.Component {
           render: 'text'
         },
         { 
-          title: 'switch text', 
-          dataIndex: 'show', 
-          key: 'show',
-          render: 'boolean'
-        }
+          title: 'render', 
+          dataIndex: 'link', 
+          key: 'link',
+          render: (record, text, index)=>{
+              return <span>{"render(ecord, text, index)"}</span>
+          }
+        },
       ];
 
       const data = [
         { 
           name: 'item 1',
           tableType:'text', 
-          show: true, 
+          show: 1, 
           beizhu:'11111', 
           key: 1
         },
         { 
           name: 'item 2',
           tableType:'inputNumber', 
-          show: false, 
+          show: 0, 
           beizhu:'22222', 
           key: 2 
         },
@@ -108,6 +108,7 @@ class FieldSettings extends React.Component {
       this.state = {
         data,
         columns,
+        canEdit: true,
       }
     }
 
@@ -127,10 +128,16 @@ class FieldSettings extends React.Component {
     }
     
     //改变
-    changePanes(data){
+    onChange(data){
       this.setState({ data });
     }
 
+    changeCanEdit = ()=>{
+      this.setState({
+          canEdit: !this.state.canEdit
+      });
+    }
+    
     render() {
       return (
         <div style={{ padding:'20px' }}>
@@ -139,11 +146,12 @@ class FieldSettings extends React.Component {
             columns = {this.state.columns} 
             data = {this.state.data} 
             delAsk = {true}
-            editAble = {false}
+            editAble = {this.state.canEdit}
             upDownControlText = {'排序'}
             addDelControlText = {'增删'}
-            onChange = {this.changePanes.bind(this)} 
+            onChange = {this.onChange.bind(this)} 
           />
+          <Button type="primary" onClick = {this.changeCanEdit}>{this.state.canEdit?'不可编辑':'可编辑'}</Button>
         </div>
       )
     }

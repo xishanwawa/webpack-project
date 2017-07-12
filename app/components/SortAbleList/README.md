@@ -23,6 +23,8 @@ import SortAbleList from 'components/SortAbleList' (？！path路径根据自己
 
 -- 是否可排序区域宽度 sortAbleSpan  ={num||3}
 
+-- 是否可编辑    editAble = {true/false} 非必须 默认true
+
 -- 是否显示列头    showHeader = {true/false} 非必须 默认true
 
 -- plusPlace 添加位置 默认是 'next' 'last' 为末尾添加一行
