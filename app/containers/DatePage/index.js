@@ -19,7 +19,6 @@ class ListPage extends React.Component {
     return (
       <div style={{ padding:'20px' }}>
         <DatePicker />
-        {true && '11111'}
       </div>
     )
   }
