@@ -7,10 +7,67 @@ import classNames from 'classnames';
 import { Button, Input, Select, Radio, Checkbox, InputNumber, Switch, Row, Col, Icon, Modal } from 'antd';
 const ButtonGroup = Button.Group;
 const Option = Select.Option;
-import './index.less'
-
+import './index.less';
 class SortAbleList extends React.Component {
   static defaultProps = {
+    data: [
+          { 
+            name: 'item 1',
+            tableType:'text', 
+            show: 1, 
+            beizhu:'11111', 
+            key: 1
+          },
+          { 
+            name: 'item 2',
+            tableType:'inputNumber', 
+            show: 0, 
+            beizhu:'22222', 
+            key: 2 
+          }],
+    columns: [
+        { 
+          title: 'input control', 
+          dataIndex: 'name', 
+          key: 'name',
+          render: 'input',
+        },
+        { 
+          title: 'select control', 
+          dataIndex: 'tableType', 
+          key: 'tableType',
+          render: 'select',
+          selectList:[
+            {
+              name:'单行文本',
+              val:'text'
+            },
+            {
+              name:'多行文本',
+              val:'textarea'
+            }
+          ]
+        },
+        { 
+          title: 'switch text', 
+          dataIndex: 'show', 
+          key: 'show',
+          render: 'boolean'
+        },
+        { 
+          title: 'text control', 
+          dataIndex: 'beizhu', 
+          key: 'beizhu',
+          render: 'text'
+        },
+        { 
+          title: 'render', 
+          dataIndex: 'link', 
+          key: 'link',
+          render: (record, text, index)=>{
+              return <span>{"render(ecord, text, index)"}</span>
+          }
+        }],
     size: "default",
     sortAbleSpan:3,
     addAndDelAbleSpan:3,
@@ -38,13 +95,20 @@ class SortAbleList extends React.Component {
     super();
   }
 
-  state = {}
+  state = {
+    changeIndex: null
+  }
+
+  setChangeIndexNull() {
+    this.setState({changeIndex: null})
+  }
 
   shiftUpField(index) {
      let fields = Immutable.fromJS(this.props.data).toJS();
      let agency = fields[index];
      fields[index] = fields[index-1];
      fields[index-1] = agency;
+     this.setState({changeIndex: index-1})
      this.props.onChange(fields);
   }
 
@@ -53,6 +117,7 @@ class SortAbleList extends React.Component {
      let agency = fields[index];
      fields[index] = fields[index+1];
      fields[index+1] = agency;
+     this.setState({changeIndex: index+1})
      this.props.onChange(fields);
   }
 
@@ -125,7 +190,7 @@ class SortAbleList extends React.Component {
 
   render() {
     let fieldLength = this.props.data.length - 1;
-    
+
     //列表渲染
     let nodeFieldList = this.props.data.map((item, index) => {
        let nodeItemList =  this.props.columns.map((columnsItem, columnsIndex) => {
@@ -162,8 +227,7 @@ class SortAbleList extends React.Component {
             </Col>;
           }else if(columnsItem.render == "boolean"){
             return <Col key = {columnsItem.key} span={columnsItem.span || 3}>
-                <Switch 
-                  size= {this.props.size}
+                <Switch
                   checked={(Number(item[columnsItem.dataIndex]) == 1) ? true : false}
                   onChange={this.switchFieldVal.bind(this, index, columnsItem.dataIndex)}
                   checkedChildren={this.props.checkedText} 
@@ -186,7 +250,7 @@ class SortAbleList extends React.Component {
        });
 
        //加上排序和添加删除操作
-       return <li key = {index} style={{ margin:"10px 0"}}>
+       return <li key = {index} className = {index == this.state.changeIndex ? 'changeIndex': ''}>
               <Row>
                 {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>
                   <ButtonGroup>
@@ -208,7 +272,7 @@ class SortAbleList extends React.Component {
     })
 
     //头部列名
-    let nodeColumns = this.props.showHeader ? <Row style={{ fontWeight:'bold', background: '#f7f7f7', padding:'10px 4px'}}>
+    let nodeColumns = this.props.showHeader ? <Row  className = {"sortable-title " + this.props.size}>
           {this.props.sortAble ? <Col span={this.props.sortAbleSpan}>{this.props.upDownControlText}</Col> : ''}
           {this.props.columns.map((item) => {
             return <Col key ={item.key} span={item.span || 3}>{item.title}</Col>
@@ -216,9 +280,9 @@ class SortAbleList extends React.Component {
           {this.props.addAndDelAble ? <Col span={this.props.addAndDelAbleSpan}>{this.props.addDelControlText}</Col> : ""}
         </Row> : null;
     return (
-      <div className = "ck-sortable-list">
+      <div className = "ck-sortable">
         {nodeColumns}
-        <ul>
+        <ul  className = {this.props.size}>
         {nodeFieldList} 
         </ul>
       </div>

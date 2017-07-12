@@ -1,5 +1,48 @@
-.ck-sortable-list {
-    li {
-        margin: 10px 0;
+.ck-sortable {
+    .sortable-title {
+       font-weight: bold;
+       background: #fff;
+    }
+
+    ul {
+      li {
+          border-bottom:1px solid #E9E9E9;
+	    }
+    }
+    .default {
+      .ant-row{
+        &>div{
+          padding:12px 8px;
+        }
+      }
+    }
+
+    .sortable-title.default {
+      &>div{
+        padding:0 8px 8px;
+      }
+    }
+
+    .small {
+      .ant-row{
+        &>div{
+          padding:8px 4px;
+        }
+      }
+    }
+
+    .sortable-title.small {
+      &>div{
+        padding:0 4px;
+      }
+    }
+
+    .changeIndex {
+       background: rgba(30, 184, 187, 0.08);
+    }
+
+    .ant-affix {
+       border-bottom:1px solid #E9E9E9;
+       box-shadow: 0 1px 4px #ddd;
     }
 }
