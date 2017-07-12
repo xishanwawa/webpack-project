@@ -77,6 +77,7 @@ class SortAbleList extends React.Component {
     showHeader: true,
     plusPlace: 'next',
     plusType: 'copy',
+    plusTypeData:{},
     hasMinus: 'hasMinus',
     hasPlus: 'hasPlus',
     commonPlus: true,

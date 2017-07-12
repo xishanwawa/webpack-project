@@ -25,13 +25,13 @@ class FieldSettings extends React.Component {
       super(props)
       const columns = [
         { 
-          title: 'input control', 
+          title: 'render input', 
           dataIndex: 'name', 
           key: 'name',
           render: 'input',
         },
         { 
-          title: 'select control', 
+          title: 'render select', 
           dataIndex: 'tableType', 
           key: 'tableType',
           render: 'select',
@@ -67,19 +67,19 @@ class FieldSettings extends React.Component {
           ]
         },
         { 
-          title: 'switch text', 
+          title: 'render switch', 
           dataIndex: 'show', 
           key: 'show',
           render: 'boolean'
         },
         { 
-          title: 'text control', 
+          title: 'render text', 
           dataIndex: 'beizhu', 
           key: 'beizhu',
           render: 'text'
         },
         { 
-          title: 'render', 
+          title: 'render renderFn', 
           dataIndex: 'link', 
           key: 'link',
           render: (record, text, index)=>{
@@ -109,22 +109,16 @@ class FieldSettings extends React.Component {
         data,
         columns,
         canEdit: true,
+        showHeader: true,
+        sortAble: true,
+        addAndDelAble:true,
+        delAsk: false,
       }
     }
 
     componentDidMount() {
       const { dispatch, dirty, route, router } = this.props;
       router.setRouteLeaveHook(route, this.routerWillLeave.bind(this));
-    }
-
-    routerWillLeave(nextLocation) {
-        let r = confirm("本页设置可能丢失，确认真的离开吗？");
-        if(r == true){
-          console.log("离开！");
-        }else{
-          console.log("离开个毛！");
-          return false
-        }
     }
     
     //改变
@@ -137,6 +131,30 @@ class FieldSettings extends React.Component {
           canEdit: !this.state.canEdit
       });
     }
+
+    changeShowHeader = ()=>{
+      this.setState({
+          showHeader: !this.state.showHeader
+      });
+    }
+
+    changeSortAble = ()=>{
+      this.setState({
+          sortAble: !this.state.sortAble
+      });
+    }
+
+    changeAddAndDelAble = ()=>{
+      this.setState({
+          addAndDelAble: !this.state.addAndDelAble
+      });
+    }
+
+    changeDelAsk = () => {
+      this.setState({
+          delAsk: !this.state.delAsk
+      });
+    }
     
     render() {
       return (
@@ -147,11 +165,19 @@ class FieldSettings extends React.Component {
             data = {this.state.data} 
             delAsk = {true}
             editAble = {this.state.canEdit}
-            upDownControlText = {'排序'}
-            addDelControlText = {'增删'}
+            showHeader = {this.state.showHeader}
+            sortAble = {this.state.sortAble}
+            addAndDelAble = {this.state.addAndDelAble}
+            delAsk = {this.state.delAsk}
             onChange = {this.onChange.bind(this)} 
           />
-          <Button type="primary" onClick = {this.changeCanEdit}>{this.state.canEdit?'不可编辑':'可编辑'}</Button>
+          <div style={{ padding:'20px 0' }}>
+            <Button style={{ marginRight:'10px' }} type="primary" onClick = {this.changeCanEdit}>{this.state.canEdit?'不可编辑':'可编辑'}</Button>
+            <Button style={{ marginRight:'10px' }} type="primary" onClick = {this.changeShowHeader}>{this.state.showHeader?'有头部':'无头部'}</Button>
+            <Button style={{ marginRight:'10px' }} type="primary" onClick = {this.changeSortAble}>{this.state.sortAble?'可排序':'不可排序'}</Button>
+            <Button style={{ marginRight:'10px' }} type="primary" onClick = {this.changeAddAndDelAble}>{this.state.addAndDelAble?'可增删':'不可增删'}</Button>
+            <Button style={{ marginRight:'10px' }} type="primary" onClick = {this.changeDelAsk}>{this.state.delAsk ?'删除询问':'删除不询问'}</Button>
+          </div>
         </div>
       )
     }
