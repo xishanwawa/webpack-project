@@ -2,67 +2,65 @@
  * Created by yangtm
  */
 import React, { Component, PropTypes } from 'react'
-
-import DatePickerHeader from './Header'
-import DatePickerBody   from './Body'
+import moment from 'moment'
+import Header from './Header'
+import Body   from './Body'
 import './index.less'
 
-class CkDatePicker extends React.Component {
+function fillZero(arg){
+    return (arg<10) ? "0" + arg : arg;
+}
+
+class DatePicker extends React.Component {
   static defaultProps = {
-    changeDate: function(date) {
-        console.log(date);
+    type: "day",
+    change: function(date) {
+      console.log(date);
     }
   }
   
   constructor() {
       super()
-      var newDate =  new Date();
+      let date =  moment();
       this.state = {
-          checkedYear: newDate.getFullYear(),
-          checkedMonth: newDate.getMonth() + 1,
-          checkedDay: newDate.getDate()
+        dateObj: date,
+        dateStr: date.format(),
+        year: date.year(),
+        month: date.months(),
+        day: date.day()
       }
   }
 
-  prevYear() {
-
+  prevYear = () => {
+    debugger
+    console.log(moment().add('year', 1).format("YYYY-MM-DD"));
   }
 
-  nextYear() {
+  nextYear = () => {
     
   }
 
-  prevMonth() {
+  prevMonth = () => {
     
   }
 
-  nextMonth() {
-    
-  }
-
-  checkDays() {
+  nextMonth = () => {
     
   }
 
   render() {
     return (
-      <div className="datepicker unselectable">
-        <DatePickerHeader 
-          year           = {this.state.checkedYear}
-          month          = {this.state.checkedMonth}
-          prevYearClick  = {this.prevYear.bind(this)}
-          nextYearClick  = {this.nextYear.bind(this)}
-          prevMonthClick = {this.prevMonth.bind(this)}
-          nextMonthClick = {this.nextMonth.bind(this)}
-        />
-        <DatePickerBody
-          year        = {this.state.checkedYear}
-          month       = {this.state.checkedMonth}
-          day         = {this.state.checkedDay}
-          daysOnClick = {this.checkDays.bind(this)}
+      <div className="ck-datePicker fc-unselectable">
+        <Header 
+          {...this.state}
+          prevYear = {this.prevYear}
+          nextYear = {this.nextYear}
+          prevMonth = {this.prevMonth}
+          nextMonth = {this.nextMonth}
         />
       </div>
     )
   }
 }
-export default CkDatePicker
+
+export default DatePicker

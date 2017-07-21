@@ -113,7 +113,7 @@ class DatePickerBody extends React.Component {
           }
         };
 
-        return <li key={i} className = {className} onClick = {that.props.daysOnClick.bind(that, {year:preYear, month:preMonth, day:item})} >{item}</li>
+        return <li key={i} className = {className} onClick = {that.props.dayOnClick.bind(that, {year:preYear, month:preMonth, day:item})} >{item}</li>
     });
     nodeCurrent = CurrentDays.map(function( item, i ){
       let className = "";
@@ -128,7 +128,7 @@ class DatePickerBody extends React.Component {
       if(that.props.fcState == 'day' && item == day ){
         className += "checked-day"
       }
-      return <li  key={i} className = {className} onClick = {that.props.daysOnClick.bind(that, {year, month, day:item})} >{item}</li>;
+      return <li  key={i} className = {className} onClick = {that.props.dayOnClick.bind(that, {year, month, day:item})} >{item}</li>;
     });
     nodeNext = nextDays.map(function( item, i ){
         let preYear, preMonth;
@@ -150,7 +150,7 @@ class DatePickerBody extends React.Component {
           }
         };
 
-        return <li key={i} className = {className}  onClick = {that.props.daysOnClick.bind(that, {year:preYear, month:preMonth, day:item})}>{item}</li>
+        return <li key={i} className = {className}  onClick = {that.props.dayOnClick.bind(that, {year:preYear, month:preMonth, day:item})}>{item}</li>
     });
 
       

@@ -13,7 +13,6 @@ class ListDemo extends React.Component{
     this.state = {
       list :[]
     }
-
   }
   
   componentDidMount(){
@@ -23,6 +22,9 @@ class ListDemo extends React.Component{
             url: 'http://yangtianming.cn',
             method: 'post',
             type: 'json',
+            data: {
+
+            }
         });
         debugger
         this.setState({

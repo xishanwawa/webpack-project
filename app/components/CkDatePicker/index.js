@@ -38,7 +38,7 @@ class CkDatePicker extends React.Component {
       nowMonth: date.month|| this.state.month
     });
   }
-  prevYearClick (){
+  prevYear (){
     let newYear = this.state.year - 1;
     var newMonth = parseInt( this.state.month );
     var newDay = this.state.day;
@@ -65,7 +65,7 @@ class CkDatePicker extends React.Component {
       day: newDay
     });
   }
-  nextYearClick (){
+  nextYear (){
     var newYear = this.state.year + 1;
     var newMonth = parseInt( this.state.month );
     var newDay = this.state.day;
@@ -92,7 +92,7 @@ class CkDatePicker extends React.Component {
       day: newDay
     });
   }
-  prevMonthClick (){
+  prevMonth (){
     var newYear = this.state.year;
     var newMonth = parseInt( this.state.month ) - 1;
     var newDay = this.state.day;
@@ -124,7 +124,7 @@ class CkDatePicker extends React.Component {
       day:newDay
     });
   }
-  nextMonthClick (){
+  nextMonth (){
     var newYear = this.state.year;
     var newMonth = parseInt( this.state.month ) + 1;
     var newDay = this.state.day;
@@ -155,7 +155,7 @@ class CkDatePicker extends React.Component {
       day:newDay
     });
   }
-  daysOnClick (date){
+  dayOnClick (date){
     let fcState = this.state.backupFcState;
     this.setState({
       fcState,
@@ -172,19 +172,19 @@ class CkDatePicker extends React.Component {
     return (
       <div className="ck-datePicker fc-unselectable">
         <DatePickerHeader 
-          year           = {this.state.year}
-          month          = {this.state.month}
-          prevYearClick  = {this.prevYearClick.bind(this)}
-          nextYearClick  = {this.nextYearClick.bind(this)}
-          prevMonthClick = {this.prevMonthClick.bind(this)}
-          nextMonthClick = {this.nextMonthClick.bind(this)}
+          year    = {this.state.year}
+          month   = {this.state.month}
+          prevYear = {this.prevYear.bind(this)}
+          nextYear = {this.nextYear.bind(this)}
+          prevMonth = {this.prevMonth.bind(this)}
+          nextMonth = {this.nextMonth.bind(this)}
         />
         <DatePickerBody
           fcState     = {this.state.fcState}
           year        = {this.state.year}
           month       = {this.state.month}
           day         = {this.state.day}
-          daysOnClick = {this.daysOnClick.bind(this)}
+          dayOnClick = {this.dayOnClick.bind(this)}
         />
       </div>
     )
