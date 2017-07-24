@@ -4,8 +4,6 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import classNames from 'classnames';
-// import { Lifecycle, RouteContext } from 'react-router' import reactMixin  from
-// 'react-mixin';
 
 import Header from "components/common/Header"
 import TopMenu from "components/common/TopMenu"
